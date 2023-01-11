@@ -1,0 +1,6 @@
+#!/bin/bash
+export DAIKONDIR=path_to_daikon
+export SUBJECTS_SOURCE=path_to_subjects
+export STATES_GEN=path_to_evospex_testgen
+export EVOSPEX_TEST_GEN=path_to_evospex_testgen
+export OUTPUT=path_to_outputdir

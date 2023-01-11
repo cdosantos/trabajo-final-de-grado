@@ -7,11 +7,12 @@
 # ---------- settings --------
 run_randoop=true
 run_daikon=true
-junit=/home/claudio/Documentos/tesis/codigo/lib/junit-4.13.2.jar
-daikon_path=/home/claudio/Software/daikon-5.8.14
-evospex=/home/claudio/Software/evospex-test-gen/
-dir=/home/claudio/Documentos/tesis/codigo/ground-truth-subjects/subjects/$1
-output_dir=/home/claudio/Documentos/tesis/codigo/results-ground-truth-subjects/subjects/$1
+curr_dir=$(pwd)
+junit=$curr_dir/lib/junit-4.13.2.jar
+daikon_path=$DAIKONDIR
+evospex=$EVOSPEX_TEST_GEN
+dir=$SUBJECTS_SOURCE/subjects/$1
+output_dir=$OUTPUT/subjects/$1
 # -----------------------------
 
 # ---- colores ----
@@ -26,8 +27,8 @@ method=${class}.$3 # "examples.SimpleMethods.getMin\(int,int\)"
 class_path=${package//[\.]/\/} # examples/SimpleMethods
 method_without_args=${3%%\(*} # getMin
 
-tests_src=/home/claudio/Software/evospex-test-gen/tests/
-tests_bin=/home/claudio/Software/evospex-test-gen/tests/bin/
+tests_src=$evospex/tests/
+tests_bin=$evospex/tests/bin/
 
 mkdir -p ${output_dir}daikon
 mkdir -p ${output_dir}randoop
