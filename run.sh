@@ -9,8 +9,10 @@ run_randoop=true
 run_daikon=false
 curr_dir=$(pwd)
 junit=$curr_dir/lib/junit-4.13.2.jar
+hamcrest=$curr_dir/lib/hamcrest-core-1.3.jar
 daikon_path=$DAIKONDIR
 evospex=$EVOSPEX_TEST_GEN
+major=$curr_dir/lib/major
 dir=$SUBJECTS_SOURCE/subjects/$1
 output_dir=$OUTPUT/subjects/$1
 # -----------------------------
@@ -78,7 +80,7 @@ fi
 # MAJOR
 mkdir ${output_dir}bin
 echo '> Generating mutants with Major for file: '$2.java
-$MAJOR_HOME/bin/javac -cp $subject_jar -nowarn -J-Dmajor.export.mutants=true -XMutator:ALL -d ${output_dir}bin ${dir}src/main/java/$class_path/${2}.java
+$major/bin/javac -cp $subject_jar -nowarn -J-Dmajor.export.mutants=true -XMutator:ALL -d ${output_dir}bin ${dir}src/main/java/$class_path/${2}.java
 
 echo '> Mutants generated!'
 mv mutants.log ${output_dir}mutants.log
@@ -94,4 +96,4 @@ do
   echo '> Mutant compiled'
 done
 
-java -cp ${output_dir}mutants/2:${output_dir}randoop/bin:$junit:$HAMCREST_CORE org.junit.runner.JUnitCore examples.RegressionTest0
+java -cp ${output_dir}mutants/2:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore examples.RegressionTest0 | grep "Tests run:"
