@@ -13,7 +13,7 @@ hamcrest=$curr_dir/lib/hamcrest-core-1.3.jar
 daikon_path=$DAIKONDIR
 evospex=$EVOSPEX_TEST_GEN
 major=$curr_dir/lib/major
-dir=$SUBJECTS_SOURCE/subjects/$1
+source_dir=$SUBJECTS_SOURCE/subjects/$1
 output_dir=$OUTPUT/subjects/$1
 # -----------------------------
 
@@ -22,9 +22,8 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 # -----------------
 
-rm -rf $output_dir
 
-subject_jar=${dir}build/libs/simple-examples-1.0-SNAPSHOT.jar
+subject_jar=${source_dir}build/libs/simple-examples-1.0-SNAPSHOT.jar
 package=$4
 class=${package}.$2 # "examples.SimpleMethods" 
 method=${class}.$3 # "examples.SimpleMethods.getMin\(int,int\)"
@@ -35,17 +34,24 @@ method_without_args=${method_without_args%%\\*} # getMin fix '\'
 tests_src=$evospex/tests/
 tests_bin=$evospex/tests/bin/
 
-mkdir -p ${output_dir}daikon
-mkdir -p ${output_dir}randoop
-
 # RANDOOP
 if [ "$run_randoop" = true ] ; then
-  cd ${dir}
+  rm -rf ${output_dir}randoop
+  mkdir -p ${output_dir}randoop
+  cd ${source_dir}
+
   ./gradlew -q -Dskip.tests jar
   cd ${evospex}
   ./gen-randoop-pos-neg-objects.sh -cp=${subject_jar} -c=${class} -m=${method} -s=3
   cd tests
   mkdir bin
+
+  for test in ${tests_src}${class_path}/*.java
+  do
+    echo '> Adding timeout 60 to tests'
+    (sed -i '/^package */a \import java.util.concurrent.TimeUnit;\nimport org.junit.Rule;\nimport org.junit.rules.Timeout;' $test)
+    (sed -i '/^public class */a \\t@Rule\n\tpublic Timeout globalTimeout = Timeout.seconds(3);' $test)
+  done
 
   javac -cp ${junit}:${tests_src}:${subject_jar} ${class_path}/*.java -d ${tests_bin}
 
@@ -55,8 +61,11 @@ if [ "$run_randoop" = true ] ; then
 fi
 
 # DAIKON
-tests_bin=${output_dir}randoop/bin/
 if [ "$run_daikon" = true ] ; then
+  rm -rf ${output_dir}daikon
+  mkdir -p ${output_dir}daikon
+  tests_bin=${output_dir}randoop/bin/
+
   java -cp ${tests_bin}:${daikon_path}/daikon.jar:${subject_jar} daikon.DynComp \
     --output-dir=${output_dir}daikon/ \
     ${package}.RegressionTestDriver
@@ -78,22 +87,54 @@ if [ "$run_daikon" = true ] ; then
 fi
 
 # MAJOR
+rm -rf ${output_dir}bin
 mkdir ${output_dir}bin
 echo '> Generating mutants with Major for file: '$2.java
-$major/bin/javac -cp $subject_jar -nowarn -J-Dmajor.export.mutants=true -XMutator:ALL -d ${output_dir}bin ${dir}src/main/java/$class_path/${2}.java
+$major/bin/javac -cp $subject_jar -nowarn -J-Dmajor.export.mutants=true -XMutator:ALL -d ${output_dir}bin ${source_dir}src/main/java/$class_path/${2}.java
 
 echo '> Mutants generated!'
 mv mutants.log ${output_dir}mutants.log
+rm -rf ${output_dir}mutants
 mv mutants ${output_dir}
 
 echo ''
 echo '> Processing mutants'
-for dir in ${output_dir}mutants/*/
-do
-  echo '> Procesing mutant: '$dir
-  echo '> Compiling mutant'
-  javac -cp ${output_dir}bin -g $dir$class_path/${2}.java -d $dir
-  echo '> Mutant compiled'
-done
 
-java -cp ${output_dir}mutants/2:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore examples.RegressionTest0 | grep "Tests run:"
+tests=0
+mutants=0
+detected_mutants=0
+for mutants_dir in ${output_dir}mutants/*/
+do
+  mutants=$((mutants + 1))
+  echo '> Procesing mutant: '$mutants
+  echo '> Compiling mutant'
+  # está bien el uso del jar?
+  javac -cp ${subject_jar} -g $mutants_dir$class_path/${2}.java -d $mutants_dir
+  echo '> Mutant compiled'
+  echo '> Running tests'
+  tests_files=""
+  for filename in ${output_dir}randoop/bin/$class_path/*.class
+  do
+    test=`basename "$filename" .class`
+    if [[ "$test" != 'RegressionTestDriver' ]] ; then
+      tests_files="$tests_files $package.$test"
+    fi
+  done
+  fail=$(java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files | grep "Tests run: \|OK (")
+  echo $fail
+  tmp=$(echo ${fail} | cut -d'(' -f 3)
+  if [ ! -z "${tmp}" ]; then
+    detected_mutants=$((detected_mutants + 1))
+    tmp=${fail#Tests run: }
+    tests=${tmp%,*}
+  else
+    tmp=${fail#OK (}
+    tests=${tmp% tests)}
+  fi
+  echo ''
+done
+echo Tests: $tests, Mutants: $mutants, Detected mutants: $detected_mutants
+
+echo "Tests, Mutants, Detected mutants" > ${output_dir}results.csv
+echo $tests, $mutants, $detected_mutants >> ${output_dir}results.csv
+echo $2.$method_without_args, $tests, $mutants, $detected_mutants >> ${output_dir}../../../all-results.csv
