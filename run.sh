@@ -46,18 +46,12 @@ if [ "$run_randoop" = true ] ; then
   cd tests
   mkdir bin
 
-  for test in ${tests_src}${class_path}/*.java
-  do
-    echo '> Adding timeout 60 to tests'
-    (sed -i '/^package */a \import java.util.concurrent.TimeUnit;\nimport org.junit.Rule;\nimport org.junit.rules.Timeout;' $test)
-    (sed -i '/^public class */a \\t@Rule\n\tpublic Timeout globalTimeout = Timeout.seconds(3);' $test)
-  done
-
   javac -cp ${junit}:${tests_src}:${subject_jar} ${class_path}/*.java -d ${tests_bin}
 
   mkdir -p ${output_dir}/randoop/${class_path}
   cp -r ${tests_src}${class_path}/* ${output_dir}/randoop/${class_path}
-  cp -r ${tests_bin} ${output_dir}/randoop/
+  mkdir -p ${output_dir}/randoop/bin
+  cp -r ${tests_bin} ${output_dir}/randoop/bin
 fi
 
 # DAIKON
@@ -120,8 +114,8 @@ do
       tests_files="$tests_files $package.$test"
     fi
   done
-  fail=$(java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files | grep "Tests run: \|OK (")
-  echo $fail
+  fail=$(timeout 10 java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files | grep "Tests run: \|OK (")
+  echo "> Fail: "$fail
   tmp=$(echo ${fail} | cut -d'(' -f 3)
   if [ ! -z "${tmp}" ]; then
     detected_mutants=$((detected_mutants + 1))
