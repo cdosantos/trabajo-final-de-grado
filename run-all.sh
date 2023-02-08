@@ -1,4 +1,4 @@
-echo "Methods, Tests, Mutants, Detected mutants" > all-results.csv
+echo "Methods,Tests,Mutants,Detected mutants" > all-results.csv
 
 # ./run.sh relative_path class method package
 
