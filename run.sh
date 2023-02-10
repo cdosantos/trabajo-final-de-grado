@@ -51,7 +51,7 @@ if [ "$run_randoop" = true ] ; then
   mkdir -p ${output_dir}/randoop/${class_path}
   cp -r ${tests_src}${class_path}/* ${output_dir}/randoop/${class_path}
   mkdir -p ${output_dir}/randoop/bin
-  cp -r ${tests_bin} ${output_dir}/randoop/bin
+  cp -r ${tests_bin}* ${output_dir}/randoop/bin
 fi
 
 # DAIKON
@@ -97,9 +97,11 @@ echo '> Processing mutants'
 tests=0
 mutants=0
 detected_mutants=0
+echo "mutant_id,mutation,failing_test,assertions_failures,non_assertions_failures" > ${output_dir}results.csv
 for mutants_dir in ${output_dir}mutants/*/
 do
   mutants=$((mutants + 1))
+  mutation=$(tail -n+$mutants "$output_dir"mutants.log | head -1 | cut -d':' -f 2)
   echo '> Procesing mutant: '$mutants
   echo '> Compiling mutant'
   # está bien el uso del jar?
@@ -114,21 +116,27 @@ do
       tests_files="$tests_files $package.$test"
     fi
   done
-  fail=$(timeout 10 java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files | grep "Tests run: \|OK (")
+  out=$(timeout 10 java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files)
+  fail=$(echo "$out" | grep "Tests run: \|OK (")
   echo "> Fail: "$fail
+  fail_detail=$(echo "$out" | grep "java.lang.AssertionError")
+  # echo "> Fail Detail: "$fail_detail
+  failing_test=0
+  assertions_failures=$(echo "$fail_detail" | wc -l)
+  assertions_failures=$((assertions_failures - 1))
+  echo "> Assertion errors: "$assertions_failures
   tmp=$(echo ${fail} | cut -d'(' -f 3)
   if [ ! -z "${tmp}" ]; then
     detected_mutants=$((detected_mutants + 1))
     tmp=${fail#Tests run: }
     tests=${tmp%,*}
+    failing_test=${fail##* }
   else
     tmp=${fail#OK (}
     tests=${tmp% tests)}
   fi
   echo ''
+  echo $mutants,$mutation,$failing_test,$assertions_failures,$((failing_test - assertions_failures)) >> ${output_dir}results.csv
 done
 echo Tests: $tests, Mutants: $mutants, Detected mutants: $detected_mutants
-
-echo "Tests, Mutants, Detected mutants" > ${output_dir}results.csv
-echo $tests, $mutants, $detected_mutants >> ${output_dir}results.csv
-echo $2.$method_without_args, $tests, $mutants, $detected_mutants >> ${output_dir}../../../all-results.csv
+echo $2.$method_without_args,$tests,$mutants,$detected_mutants >> ${output_dir}../../../all-results.csv
