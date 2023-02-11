@@ -46,6 +46,14 @@ if [ "$run_randoop" = true ] ; then
   cd tests
   mkdir bin
 
+  timeout=20000
+  for test in ${tests_src}${class_path}/*.java
+  do
+    echo '> Adding timeout '$timeout' millis to tests'
+    (sed -i '/^package */a \import java.util.concurrent.TimeUnit;\nimport org.junit.Rule;\nimport org.junit.rules.Timeout;' $test)
+    (sed -i '/^public class */a \\t@Rule\n\tpublic Timeout globalTimeout = Timeout.millis('$timeout');' $test)
+  done
+
   javac -cp ${junit}:${tests_src}:${subject_jar} ${class_path}/*.java -d ${tests_bin}
 
   mkdir -p ${output_dir}/randoop/${class_path}
@@ -116,15 +124,19 @@ do
       tests_files="$tests_files $package.$test"
     fi
   done
-  out=$(timeout 10 java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files)
+  out=$(java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files)
   fail=$(echo "$out" | grep "Tests run: \|OK (")
   echo "> Fail: "$fail
   fail_detail=$(echo "$out" | grep "java.lang.AssertionError")
-  # echo "> Fail Detail: "$fail_detail
+  fail_detail_timeout=$(echo "$out" | grep "org.junit.runners.model.TestTimedOutException")
+  # echo "> Fail Detail: "$fail_detail_timeout
   failing_test=0
   assertions_failures=$(echo "$fail_detail" | wc -l)
   assertions_failures=$((assertions_failures - 1))
+  timeout_failures=$(echo "$fail_detail_timeout" | wc -l)
+  timeout_failures=$((timeout_failures - 1))
   echo "> Assertion errors: "$assertions_failures
+  echo "> Timeout errors: "$timeout_failures
   tmp=$(echo ${fail} | cut -d'(' -f 3)
   if [ ! -z "${tmp}" ]; then
     detected_mutants=$((detected_mutants + 1))
@@ -136,7 +148,7 @@ do
     tests=${tmp% tests)}
   fi
   echo ''
-  echo $mutants,$mutation,$failing_test,$assertions_failures,$((failing_test - assertions_failures)) >> ${output_dir}results.csv
+  non_assertions_failures=$((failing_test - assertions_failures))
+  echo $mutants,$mutation,$failing_test,$assertions_failures,$non_assertions_failures >> ${output_dir}results.csv
 done
-echo Tests: $tests, Mutants: $mutants, Detected mutants: $detected_mutants
 echo $2.$method_without_args,$tests,$mutants,$detected_mutants >> ${output_dir}../../../all-results.csv
