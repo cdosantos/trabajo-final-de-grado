@@ -50,3 +50,6 @@ mkdir -p ${output_dir}/randoop/${class_path}
 cp -r ${tests_src}${class_path}/* ${output_dir}/randoop/${class_path}
 mkdir -p ${output_dir}/randoop/bin
 cp -r ${tests_bin}* ${output_dir}/randoop/bin
+mkdir -p ${output_dir}/states
+cp -r ${evospex}/inputs ${output_dir}/states/
+cp -r ${evospex}/outputs ${output_dir}/states/
