@@ -36,30 +36,7 @@ tests_bin=$evospex/tests/bin/
 
 # RANDOOP
 if [ "$run_randoop" = true ] ; then
-  rm -rf ${output_dir}randoop
-  mkdir -p ${output_dir}randoop
-  cd ${source_dir}
-
-  ./gradlew -q -Dskip.tests jar
-  cd ${evospex}
-  ./gen-randoop-pos-neg-objects.sh -cp=${subject_jar} -c=${class} -m=${method} -s=3
-  cd tests
-  mkdir bin
-
-  timeout=20000
-  for test in ${tests_src}${class_path}/*.java
-  do
-    echo '> Adding timeout '$timeout' millis to tests'
-    (sed -i '/^package */a \import java.util.concurrent.TimeUnit;\nimport org.junit.Rule;\nimport org.junit.rules.Timeout;' $test)
-    (sed -i '/^public class */a \\t@Rule\n\tpublic Timeout globalTimeout = Timeout.millis('$timeout');' $test)
-  done
-
-  javac -cp ${junit}:${tests_src}:${subject_jar} ${class_path}/*.java -d ${tests_bin}
-
-  mkdir -p ${output_dir}/randoop/${class_path}
-  cp -r ${tests_src}${class_path}/* ${output_dir}/randoop/${class_path}
-  mkdir -p ${output_dir}/randoop/bin
-  cp -r ${tests_bin}* ${output_dir}/randoop/bin
+  ./scripts/test-gen-randoop.sh $1 $2 $3 $4
 fi
 
 # DAIKON
