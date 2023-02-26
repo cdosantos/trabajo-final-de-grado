@@ -2,7 +2,7 @@
 
 # ---------- args ------------
 # ./scripts/test-gen-randoop.sh relative_path class method package
-# example: ./scripts/test-gen-randoop.sh SimpleMethods_getMin/ SimpleMethods getMin\(int,int\) examples
+# example: ./scripts/test-gen-randoop.sh SimpleMethods_getMin/ SimpleMethods "getMin\(int,int\)" examples
 
 # ---------- settings --------
 curr_dir=$(pwd)

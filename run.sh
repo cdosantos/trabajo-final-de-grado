@@ -2,7 +2,7 @@
 
 # ---------- args ------------
 # ./run.sh relative_path class method package
-# example: ./run.sh SimpleMethods_getMin/ SimpleMethods getMin\(int,int\) examples
+# example: ./run.sh SimpleMethods_getMin/ SimpleMethods "getMin\(int,int\)" examples
 
 # ---------- settings --------
 run_randoop=true

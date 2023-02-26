@@ -2,7 +2,7 @@
 
 # ---------- args ------------
 # ./scripts/spec-inference-daikon.sh relative_path class method package
-# example: ./scripts/spec-inference-daikon.sh SimpleMethods_getMin/ SimpleMethods getMin\(int,int\) examples
+# example: ./scripts/spec-inference-daikon.sh SimpleMethods_getMin/ SimpleMethods "getMin\(int,int\)" examples
 
 # ---------- settings --------
 curr_dir=$(pwd)
