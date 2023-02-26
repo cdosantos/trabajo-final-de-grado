@@ -41,28 +41,7 @@ fi
 
 # DAIKON
 if [ "$run_daikon" = true ] ; then
-  rm -rf ${output_dir}daikon
-  mkdir -p ${output_dir}daikon
-  tests_bin=${output_dir}randoop/bin/
-
-  java -cp ${tests_bin}:${daikon_path}/daikon.jar:${subject_jar} daikon.DynComp \
-    --output-dir=${output_dir}daikon/ \
-    ${package}.RegressionTestDriver
-
-  java -cp ${tests_bin}:${daikon_path}/daikon.jar:${subject_jar} daikon.Chicory \
-    --comparability-file=${output_dir}daikon/RegressionTestDriver.decls-DynComp \
-    --output-dir=${output_dir}daikon/ \
-    ${package}.RegressionTestDriver
-
-  java -cp ${daikon_path}/daikon.jar daikon.Daikon \
-    -o ${output_dir}daikon/res.inv.gz \
-    ${output_dir}daikon/RegressionTestDriver.dtrace.gz
-
-  java -cp ${daikon_path}/daikon.jar daikon.PrintInvariants \
-    ${output_dir}daikon/res.inv.gz --ppt-select ${class}':::OBJECT' --format java > ${output_dir}daikon/res.txt
-
-  java -cp ${daikon_path}/daikon.jar daikon.PrintInvariants \
-    ${output_dir}daikon/res.inv.gz --ppt-select ${class}'.'${method_without_args} --format java >> ${output_dir}daikon/res.txt
+  ./scripts/spec-inference-daikon.sh $1 $2 $3 $4
 fi
 
 # MAJOR
