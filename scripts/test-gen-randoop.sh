@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ---------- args ------------
-# ./test-gen-randoop.sh relative_path class method package
-# example: ./test-gen-randoop.sh SimpleMethods_getMin/ SimpleMethods getMin\(int,int\) examples
+# ./scripts/test-gen-randoop.sh relative_path class method package
+# example: ./scripts/test-gen-randoop.sh SimpleMethods_getMin/ SimpleMethods getMin\(int,int\) examples
 
 # ---------- settings --------
 curr_dir=$(pwd)
@@ -22,8 +22,6 @@ package=$4
 class=${package}.$2 # "examples.SimpleMethods" 
 method=${class}.$3 # "examples.SimpleMethods.getMin\(int,int\)"
 class_path=${package//[\.]/\/} # examples/SimpleMethods
-method_without_args=${3%%\(*} # getMin
-method_without_args=${method_without_args%%\\*} # getMin fix '\'
 
 tests_src=$evospex/tests/
 tests_bin=$evospex/tests/bin/
