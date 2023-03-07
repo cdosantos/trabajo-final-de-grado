@@ -37,9 +37,9 @@ cd tests
 mkdir bin
 
 timeout=20000
+echo '> Adding timeout '$timeout' millis to tests'
 for test in ${tests_src}${class_path}/*.java
 do
-	echo '> Adding timeout '$timeout' millis to tests'
 	(sed -i '/^package */a \import java.util.concurrent.TimeUnit;\nimport org.junit.Rule;\nimport org.junit.rules.Timeout;' $test)
 	(sed -i '/^public class */a \\t@Rule\n\tpublic Timeout globalTimeout = Timeout.millis('$timeout');' $test)
 done
