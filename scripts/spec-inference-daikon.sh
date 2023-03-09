@@ -23,7 +23,6 @@ NC='\033[0m'
 subject_jar=${source_dir}build/libs/simple-examples-1.0-SNAPSHOT.jar
 package=$4
 class=${package}.$2 # "examples.SimpleMethods" 
-method=${class}.$3 # "examples.SimpleMethods.getMin\(int,int\)"
 class_path=${package//[\.]/\/} # examples/SimpleMethods
 method_without_args=${3%%\(*} # getMin
 method_without_args=${method_without_args%%\\*} # getMin fix '\'
@@ -44,14 +43,17 @@ java -cp ${tests_bin}:${daikon_path}/daikon.jar:${subject_jar} daikon.Chicory \
  ${package}.RegressionTestDriver
 
 # Third step: actual Daikon execution to infer specs
-java -cp ${daikon_path}/daikon.jar daikon.Daikon \
+java -cp ${daikon_path}/daikon.jar daikon.Daikon --ppt-select-pattern ${package}'\.'$2':::OBJECT|'${package}'\.'$2'\.'$method_without_args \
  -o ${output_dir}daikon/res.inv.gz \
  ${output_dir}daikon/RegressionTestDriver.dtrace.gz
 
 # Process result and print the Daikon specs for better readability. First
 # the ones related to class invariants, and then the ones related to the current method
 java -cp ${daikon_path}/daikon.jar daikon.PrintInvariants \
- ${output_dir}daikon/res.inv.gz --ppt-select ${class}':::OBJECT' --format java > ${output_dir}daikon/res.txt
+ ${output_dir}daikon/res.inv.gz --format java > ${output_dir}daikon/res.txt
 
-java -cp ${daikon_path}/daikon.jar daikon.PrintInvariants \
- ${output_dir}daikon/res.inv.gz --ppt-select ${class}'.'${method_without_args} --format java >> ${output_dir}daikon/res.txt
+# java -cp ${daikon_path}/daikon.jar daikon.PrintInvariants \
+#  ${output_dir}daikon/res.inv.gz --ppt-select ${class}':::OBJECT' --format java > ${output_dir}daikon/res-check.txt
+
+# java -cp ${daikon_path}/daikon.jar daikon.PrintInvariants \
+#  ${output_dir}daikon/res.inv.gz --ppt-select ${class}'.'${method_without_args} --format java >> ${output_dir}daikon/res-check.txt
