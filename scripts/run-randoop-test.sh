@@ -64,4 +64,4 @@ do
   non_assertions_failures=$((failing_test - assertions_failures))
   echo $mutants,$mutation,$failing_test,$assertions_failures,$non_assertions_failures >> ${output_dir}randoop-result.csv
 done
-echo $2.$method_without_args,$tests,$mutants,$detected_mutants >> ${output_dir}../../../all-results.csv
+echo $2.$method_without_args,$tests,$mutants,$detected_mutants >> ${output_dir}../../../randoop-all-results.csv
