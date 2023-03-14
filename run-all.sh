@@ -1,4 +1,5 @@
-echo "Methods,Tests,Mutants,Detected mutants" > all-results.csv
+echo "methods,tests,mutants,detected_mutants" > randoop-all-results.csv
+echo "methods,tests,mutants,detected_mutants" > daikon-all-results.csv
 
 # ./run.sh relative_path class method package
 
@@ -14,7 +15,7 @@ echo "Methods,Tests,Mutants,Detected mutants" > all-results.csv
 # ./run.sh IntMath_mod/ IntMath mod\(int,int\) "math"
 # ./run.sh listcomp02_insert_r/ ListComp02 "insert_r\(R\)" examples
 # ./run.sh listcomp02_insert_s/ ListComp02 "insert_s\(S\)" examples
-./run.sh map_count/ Map "count\(\)" examples
+# ./run.sh map_count/ Map "count\(\)" examples
 # ./run.sh map_extend/ Map "extend\(K,V\)" examples
 # ./run.sh map_remove/ Map "remove\(K\)" examples
 # ./run.sh MathUtil_clamp/ MathUtil "clamp\(int,int,int\)" jts
@@ -37,9 +38,9 @@ echo "Methods,Tests,Mutants,Detected mutants" > all-results.csv
 # ./run.sh ringbuffer_wipeOut/ RingBuffer "wipeOut\(\)" examples
 # ./run.sh SimpleMethods_abs/ SimpleMethods "abs\(int\)" examples
 # ./run.sh SimpleMethods_addElementToSet/ SimpleMethods "addElementToSet\(HashSet\<Integer\>,int\)" examples
-# ./run.sh SimpleMethods_getMin/ SimpleMethods getMin\(int,int\) examples
+# ./run.sh SimpleMethods_getMin/ SimpleMethods "getMin\(int,int\)" examples
 # ./run.sh SimpleMethods_incrementNumberAtIndex/ SimpleMethods "incrementNumberAtIndex\(int\[\],int\)" examples
-# ./run.sh StackAr_makeEmpty/ StackAr "makeEmpty\(\)" DataStructures
+./run.sh StackAr_makeEmpty/ StackAr "makeEmpty\(\)" DataStructures
 # ./run.sh StackAr_pop/ StackAr "pop\(\)" DataStructures
 # ./run.sh StackAr_push/ StackAr "push\(Object\)" DataStructures
 # ./run.sh StackAr_top/ StackAr "top\(\)" DataStructures

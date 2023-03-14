@@ -28,7 +28,7 @@ method_without_args=${method_without_args%%\\*} # getMin fix '\'
 tests=0
 mutants=0
 detected_mutants=0
-echo "mutant_id,mutation,failing_test,assertions_failures,non_assertions_failures" > ${output_dir}daikon-result.csv
+echo "mutant_id,mutation,failing_test" > ${output_dir}daikon-result.csv
 for mutants_dir in ${output_dir}mutants/*/
 do
   mutants=$((mutants + 1))
@@ -39,14 +39,20 @@ do
   out=$(java -cp ${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.tools.InvariantChecker --output $mutants_dir$class_path/fails.txt ${output_dir}daikon/res.inv.gz $mutants_dir$class_path/RegressionTestDriver.dtrace.gz)
   fail=$(echo "$out" | grep "false positives, out of")
   echo "> -------------------------------------------- "
-  echo "> Out: "$out
-  echo "> Fail: "$fail
-  echo "> -------------------------------------------- "
+  # echo "> Out: "$out
+  # echo "> Fail: "$fail
+  # echo "> -------------------------------------------- "
   tmp=${fail#*: *}
   false_positives=$(echo ${tmp} | cut -d' ' -f 1)
+  if [ ! -z "${false_positives}" ]; then
+    if [ "${false_positives}" != "0" ]; then
+      detected_mutants=$((detected_mutants + 1))
+    fi
+  fi
   out_of=$(echo ${tmp} | cut -d' ' -f 6)
   out_of=${out_of%,}
   echo "> "$false_positives
   echo "> "$out_of
   echo $mutants,$mutation,$false_positives >> ${output_dir}daikon-result.csv
 done
+echo $2.$method_without_args,$out_of,$mutants,$detected_mutants >> ${output_dir}../../../daikon-all-results.csv
