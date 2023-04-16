@@ -19,7 +19,8 @@ output_dir=$OUTPUT/subjects/$1
 
 subject_jar=${source_dir}build/libs/simple-examples-1.0-SNAPSHOT.jar
 package=$4
-class=${package}.$2 # "examples.SimpleMethods" 
+class_name=$2
+class=${package}.${class_name} # "examples.SimpleMethods" 
 method=${class}.$3 # "examples.SimpleMethods.getMin\(int,int\)"
 class_path=${package//[\.]/\/} # examples/SimpleMethods
 method_without_args=${3%%\(*} # getMin
@@ -29,17 +30,20 @@ tests=0
 mutants=0
 detected_mutants=0
 echo "mutant_id,mutation,failing_test" > ${output_dir}daikon-result.csv
+echo $class_name.$method_without_args > ${output_dir}daikon.log
 for mutants_dir in ${output_dir}mutants/*/
 do
   mutants=$((mutants + 1))
   mutation=$(tail -n+$mutants "$output_dir"mutants.log | head -1 | cut -d':' -f 2)
+  echo '--> Going to run DynComp'
   dyncomp_log=$(java -cp ${output_dir}randoop/bin/:${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.DynComp --output-dir=$mutants_dir$class_path ${package}.RegressionTestDriver)
+  echo '--> Going to run Chicory'
   chicory_log=$(java -cp ${output_dir}randoop/bin/:${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.Chicory --comparability-file=$mutants_dir$class_path/RegressionTestDriver.decls-DynComp --output-dir=$mutants_dir$class_path ${package}.RegressionTestDriver)
   echo "> Running InvariantChecker"
-  out=$(java -cp ${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.tools.InvariantChecker --output $mutants_dir$class_path/fails.txt ${output_dir}daikon/res.inv.gz $mutants_dir$class_path/RegressionTestDriver.dtrace.gz)
+  out=$(java -cp ${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.tools.InvariantChecker --output $mutants_dir$class_path/fails.txt ${output_dir}daikon/res.inv.gz $mutants_dir$class_path/RegressionTestDriver.dtrace.gz 2>&1)
   fail=$(echo "$out" | grep "false positives, out of")
   echo "> -------------------------------------------- "
-  # echo "> Out: "$out
+  echo "> Mutant:"$mutants", Out: "$out >> ${output_dir}daikon.log
   # echo "> Fail: "$fail
   # echo "> -------------------------------------------- "
   tmp=${fail#*: *}
@@ -55,4 +59,4 @@ do
   echo "> "$out_of
   echo $mutants,$mutation,$false_positives >> ${output_dir}daikon-result.csv
 done
-echo $2.$method_without_args,$out_of,$mutants,$detected_mutants >> ${output_dir}../../../daikon-all-results.csv
+echo $class_name.$method_without_args,$out_of,$mutants,$detected_mutants >> ${output_dir}../../../daikon-all-results.csv
