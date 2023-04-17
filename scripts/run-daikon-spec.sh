@@ -35,12 +35,12 @@ for mutants_dir in ${output_dir}mutants/*/
 do
   mutants=$((mutants + 1))
   mutation=$(tail -n+$mutants "$output_dir"mutants.log | head -1 | cut -d':' -f 2)
-  echo '--> Going to run DynComp'
-  dyncomp_log=$(java -cp ${output_dir}randoop/bin/:${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.DynComp --output-dir=$mutants_dir$class_path ${package}.RegressionTestDriver)
-  echo '--> Going to run Chicory'
-  chicory_log=$(java -cp ${output_dir}randoop/bin/:${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.Chicory --comparability-file=$mutants_dir$class_path/RegressionTestDriver.decls-DynComp --output-dir=$mutants_dir$class_path ${package}.RegressionTestDriver)
+  echo '> Going to run DynComp'
+  dyncomp_log=$(timeout --foreground 5m java -cp ${output_dir}randoop/bin/:${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.DynComp --output-dir=$mutants_dir$class_path ${package}.RegressionTestDriver)
+  echo '> Going to run Chicory'
+  chicory_log=$(timeout --foreground 5m java -cp ${output_dir}randoop/bin/:${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.Chicory --comparability-file=$mutants_dir$class_path/RegressionTestDriver.decls-DynComp --output-dir=$mutants_dir$class_path ${package}.RegressionTestDriver)
   echo "> Running InvariantChecker"
-  out=$(java -cp ${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.tools.InvariantChecker --output $mutants_dir$class_path/fails.txt ${output_dir}daikon/res.inv.gz $mutants_dir$class_path/RegressionTestDriver.dtrace.gz 2>&1)
+  out=$(timeout --foreground 5m java -cp ${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.tools.InvariantChecker --output $mutants_dir$class_path/fails.txt ${output_dir}daikon/res.inv.gz $mutants_dir$class_path/RegressionTestDriver.dtrace.gz 2>&1)
   fail=$(echo "$out" | grep "false positives, out of")
   echo "> -------------------------------------------- "
   echo "> Mutant:"$mutants", Out: "$out >> ${output_dir}daikon.log
