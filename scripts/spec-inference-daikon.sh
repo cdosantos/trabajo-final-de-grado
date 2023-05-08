@@ -37,13 +37,15 @@ java -cp ${tests_bin}:${daikon_path}/daikon.jar:${subject_jar} daikon.DynComp \
  ${package}.RegressionTestDriver
 
 # Second step: obtain the dtrace file with Chicory
+echo '--> Going to run Chicory'
 java -cp ${tests_bin}:${daikon_path}/daikon.jar:${subject_jar} daikon.Chicory \
  --comparability-file=${output_dir}daikon/RegressionTestDriver.decls-DynComp \
  --output-dir=${output_dir}daikon/ \
  ${package}.RegressionTestDriver
 
 # Third step: actual Daikon execution to infer specs
-java -cp ${daikon_path}/daikon.jar daikon.Daikon --ppt-select-pattern ${package}'\.'$2':::OBJECT|'${package}'\.'$2'\.'$method_without_args \
+echo '--> Going to run Daikon'
+java -cp ${daikon_path}/daikon.jar daikon.Daikon --ppt-select-pattern ${package}'\.'$2':::CLASS|'${package}'\.'$2':::OBJECT|'${package}'\.'$2'\.'$method_without_args \
  -o ${output_dir}daikon/res.inv.gz \
  ${output_dir}daikon/RegressionTestDriver.dtrace.gz
 

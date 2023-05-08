@@ -16,13 +16,13 @@ QueueAr_makeEmpty,53
 SimpleMethods_abs,19
 SimpleMethods_addElementToSet,0
 SimpleMethods_getMin,5
-SimpleMethods_incrementNumberAtIndex,22
+SimpleMethods_incrementNumberAtIndex,7
 StackAr_makeEmpty,44
 StackAr_pop,42
 StackAr_push,44
 StackAr_top,45
 StackAr_topAndPop,44
-composite_addChild,33
+composite_addChild,32
 doublylinkedlistnode_insertRight,15
 doublylinkedlistnode_remove,15
 listcomp02_insert_r,4
@@ -30,7 +30,6 @@ listcomp02_insert_s,19
 map_count,56
 map_extend,56
 map_remove,56
-maxbag_add,180
 minFinder_findMin,69
 polyupdate_a1,47
 polyupdate_sm,48
@@ -41,5 +40,3 @@ ringbuffer_remove,70
 ringbuffer_wipeOut,70
 structure_foo,26
 structure_setX,25
-maxbag_getMax,177
-maxbag_remove,177
