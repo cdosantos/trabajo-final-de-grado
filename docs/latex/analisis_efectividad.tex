@@ -108,3 +108,72 @@ Graficos y Tablas segun mutante
 \csvautotabular{effectiveness-by-mutant-type.csv}
 
 \vspace{10pt}
+
+
+Se puede observar de los resultados obtenidos que las aserciones generadas por Randoop detectaron el 74.7\%, mientras que Daikon detectó el 27.67\%. 
+
+El total de aserciones generadas por Randoop es de 31030.
+Mientras que Daikon generó 5648 contratos.
+
+Algunos casos particulares donde Daikon supera a Randoop.
+SimpleMethods_incrementNumberAtIndex
+Composite.addChild (detecta distintos casos)
+listcomp02_insert_s
+BooleanUtils.toBoolean
+public static boolean toBoolean(final Integer value, final Integer trueValue, final Integer falseValue) {
+  boolean result = false;
+  if (value == null) {
+    if (trueValue == null) {
+        result = true;
+    } else if (falseValue == null) {
+        result = false;
+    }
+  } else if (value.equals(trueValue)) {
+      result = true;
+  } else if (value.equals(falseValue)) {
+      result = false;
+  } else {
+    // no match
+    throw new IllegalArgumentException("The Integer did not match either specified value");
+  }
+  assert (true);
+  return result;
+}
+
+
+Randoop con 2203 aserciones detectó 4 de 18 mutantes.
+Mientras que Daikon detectó 16 de 18 mutantes.
+
+Contrato generado por daikon
+===========================================================================
+lang3.BooleanUtils.toBoolean(java.lang.Integer, java.lang.Integer, java.lang.Integer):::ENTER
+value == falseValue
+value != null
+trueValue != null
+===========================================================================
+lang3.BooleanUtils.toBoolean(java.lang.Integer, java.lang.Integer, java.lang.Integer):::EXIT
+\result == false
+
+
+Mutantes:
+1:LVR:51:false |==> true
+2:ROR:52:value == null |==> false
+3:ROR:53:trueValue == null |==> false
+4:LVR:54:true |==> false
+5:STD:54:result = true |==> <NO-OP>
+6:ROR:55:falseValue == null |==> false
+7:LVR:56:false |==> true
+8:STD:56:result = false |==> <NO-OP>
+9:COR:58:value.equals(trueValue) |==> false
+10:COR:58:value.equals(trueValue) |==> true
+11:LVR:59:true |==> false
+12:STD:59:result = true |==> <NO-OP>
+13:COR:60:value.equals(falseValue) |==> false
+14:COR:60:value.equals(falseValue) |==> true
+15:LVR:61:false |==> true
+16:STD:61:result = false |==> <NO-OP>
+17:LVR:66:true |==> false
+18:EVR:67:result |==> false
+
+Randoop detectó mutantes 2, 6 y 7.
+Daikon no detectó 5 y 9 
