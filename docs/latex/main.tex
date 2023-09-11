@@ -1,0 +1,140 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage{fancyhdr} % heading & footer
+\usepackage[spanish,activeacute]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\pagestyle{fancy}
+\usepackage{alltt}
+% with this we ensure that the chapter and section
+% headings are in lowercase.
+\renewcommand{\chaptermark}[1]{%
+        \markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{%
+        \markright{Sec \thesection\ - #1}}
+\fancyhf{} % delete current header and footer
+\fancyhead[LE,RO]{\textit\thepage}
+\fancyhead[LO]{\bfseries\textit\rightmark}
+\fancyhead[RE]{\bfseries\textit\leftmark}
+\renewcommand{\headrulewidth}{0.5pt} % width linea
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{13pt} % space for the rule
+\fancypagestyle{plain}{%
+   \fancyhead{} % get rid of headers on plain pages
+   \renewcommand{\headrulewidth}{0pt} % and the line
+}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage[l3]{csvsimple}
+\renewcommand{\lstlistingname}{Código}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, positioning}
+
+\usepackage[all]{xy}
+
+\usepackage{listings}
+
+\usepackage{setspace}
+
+\usepackage{epigraph}
+\usepackage{etoolbox}
+\setlength\epigraphwidth{8cm}
+\setlength\epigraphrule{0pt}
+\makeatletter
+\patchcmd{\epigraph}{\@epitext{#1}}{\itshape\@epitext{#1}}{}{}
+\makeatother
+
+\usepackage{color}
+\usepackage{textcomp}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+
+%
+%
+%
+\usepackage{array}
+\usepackage{xr}
+\usepackage[utf8]{inputenc}
+
+
+
+% Algunos parametros para los margenes
+\oddsidemargin 0in \headsep 0.5cm
+\textwidth=16.54cm \textheight=22cm
+\headwidth=16.54cm
+
+% Configuración del estilo para el lenguaje Bash
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    basicstyle=\ttfamily\small,       % Fuente y tamaño
+    commentstyle=\color{gray},       % Estilo de los comentarios
+    keywordstyle=\color{black}\bfseries,       % Estilo de las palabras clave
+    stringstyle=\color{black}\bfseries, % Estilo de las cadenas de texto (negrita en negro)    showstringspaces=false,          % No mostrar espacios en cadenas de texto
+    breaklines=true,                 % Romper líneas largas automáticamente
+    breakatwhitespace=true,          % Romper solo en espacios en blanco
+    numbers=left,                    % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},   % Estilo de los números de línea
+    frame=single,                    % Borde alrededor del código
+    captionpos=b,                    % Posición de la leyenda (abajo)
+    xleftmargin=25pt,                % Margen izquierdo
+    xrightmargin=15pt,               % Margen derecho
+    framexleftmargin=20pt,           % Margen izquierdo dentro del borde
+    framexrightmargin=20pt,           % Margen izquierdo dentro del borde
+    framextopmargin=5pt,             % Margen superior dentro del borde
+    framexbottommargin=5pt,          % Margen inferior dentro del borde
+}
+
+% Configuración del estilo para el lenguaje Java
+\lstdefinestyle{javastyle}{
+    language=Java,
+    basicstyle=\ttfamily\small,       % Fuente y tamaño
+    commentstyle=\color{gray},       % Estilo de los comentarios
+    keywordstyle=\color{black}\bfseries,       % Estilo de las palabras clave
+    stringstyle=\color{black}\bfseries, % Estilo de las cadenas de texto (negrita en negro)
+    showstringspaces=false,          % No mostrar espacios en cadenas de texto
+    breaklines=true,                 % Romper líneas largas automáticamente
+    breakatwhitespace=true,          % Romper solo en espacios en blanco
+    numbers=left,                    % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},   % Estilo de los números de línea
+    frame=single,                    % Borde alrededor del código
+    captionpos=b,                    % Posición de la leyenda (abajo)
+    xleftmargin=25pt,                % Margen izquierdo
+    xrightmargin=15pt,               % Margen derecho
+    framexleftmargin=20pt,           % Margen izquierdo dentro del borde
+    framextopmargin=5pt,             % Margen superior dentro del borde
+    framexbottommargin=5pt,          % Margen inferior dentro del borde
+}
+
+\title{
+\Huge {Aserciones de tests vs contratos en el testing de regresión: Un estudio de efectividad}\\
+}
+
+\date{\vspace*{1\baselineskip}---\\ Departamento de Computación \\
+      Facultad de Cs. Exactas Físico-Químicas y Naturales \\
+      Universidad Nacional de R\'io Cuarto\\ 
+	  \vspace*{1\baselineskip}      
+      ---\\
+      \vspace*{1\baselineskip} 
+      {\bf Director:} Dr. Facundo Molina\\
+      {\bf Codirector:} Dr. Nazareno Aguirre\\
+      \vspace*{2\baselineskip}
+      \today
+      }
+
+\LARGE{\author{Claudio Dosantos}}
+
+\begin{document}
+\setcounter{chapter}{0}
+\maketitle
+
+\newpage
+
+\input{introduccion.tex}
+\input{generacion_oraculos.tex}
+\input{mutation_testing.tex}
+\input{analisis_efectividad.tex}
+\input{conclusiones.tex}
+
+\end{document}

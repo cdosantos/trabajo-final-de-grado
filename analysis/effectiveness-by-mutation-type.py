@@ -30,8 +30,8 @@ def build_chart(data, tool):
     print(data)
     fig, ax = plt.subplots()
 
-    ax.bar(data.index, data["failing"], label="Detected")
-    ax.bar(data.index, data["not_failing"], bottom=data["failing"], label="Not Detected")
+    ax.bar(data.index, data["failing"], label="Detected", color=['darkgray'])
+    ax.bar(data.index, data["not_failing"], bottom=data["failing"], label="Not Detected", color=['black'])
 
     ax.set_xlabel("Mutation")
     ax.set_ylabel("Mutants count")

@@ -1,0 +1,132 @@
+\chapter{Generación Automática de Oráculos}
+
+La generación automática de oráculos es una técnica innovadora en el campo de la verificación y validación de software que busca abordar uno de los desafíos más complejos en el proceso de pruebas: la creación confiable y precisa de oráculos de prueba.
+
+En el contexto de las pruebas de software, un oráculo es un mecanismo que compara los resultados esperados de un programa con los resultados reales obtenidos durante la ejecución de las pruebas. El oráculo determina si el programa se comporta correctamente o si existen discrepancias que indiquen la presencia de errores o fallos.
+
+La generación automática de oráculos tiene como objetivo reducir la intervención manual en la creación de estos oráculos, lo que a menudo es una tarea laboriosa y propensa a errores. Utilizando un conjunto diverso de técnicas que incluyen inteligencia artificial, machine learning, análisis estático, dinámico y también técnicas aleatorias, esta metodología permite inferir o construir automáticamente oráculos precisos y efectivos para diferentes tipos de pruebas.
+
+\section{Unit Assertions con Randoop/EvoSuite}
+
+\subsection{Randoop}
+
+Randoop propone una mejora a la generación de pruebas aleatorias mediante la utilización de una técnica llamada generación de pruebas aleatorias dirigidas por retroalimentación (Feedback-directed Random Test Generation).
+
+El enfoque de Randoop se basa en generar secuencias de invocaciones a métodos de las clases bajo prueba de forma aleatoria. Estas secuencias, que se crean inicialmente, luego se combinan para obtener nuevas secuencias. A continuación, se someten a una serie de evaluaciones mediante contratos y filtros, como la detección de excepciones, errores de aserciones o incluso la comparación con secuencias previamente generadas. Las secuencias que superan estas validaciones son seleccionadas como candidatas prometedoras para generar nuevas secuencias y, posteriormente, se pueden utilizar como tests de regresión para asegurar la calidad y funcionalidad continua del sistema bajo prueba.
+
+Por otro lado, las secuencias que no cumplen con uno o más de los contratos establecidos indican la presencia potencial de errores en el sistema bajo prueba. Estas secuencias problemáticas se convierten en valiosos hallazgos para los equipos de desarrollo, ya que apuntan a áreas críticas que requieren correcciones y mejoras.
+
+El enfoque de generación de pruebas aleatorias dirigidas por retroalimentación de Randoop representa un intento significativo para mejorar la efectividad del testing aleatorio al combinarlo con criterios de selección más inteligentes y evaluaciones de calidad. Al hacerlo, se logra una mayor cobertura de pruebas y se descubren más escenarios de prueba, lo que puede llevar a una mejor detección y corrección de errores en el software bajo evaluación. Este enfoque se ha mostrado prometedor en muchos entornos de desarrollo y se considera una herramienta valiosa para la mejora del proceso de testing en el desarrollo de software.
+
+
+\subsection{EvoSuite}
+
+EvoSuite es una herramienta de generación automática de conjuntos de pruebas para software orientado a objetos, que emplea un enfoque basado en algoritmos de búsqueda. Esta técnica combina diversas estrategias, como búsqueda híbrida, ejecución simbólica dinámica y transformación de testabilidad, para lograr una generación de pruebas más eficiente y efectiva.
+
+Uno de los aspectos clave de EvoSuite es la utilización de algoritmos genéticos en su proceso de generación de pruebas. Estos algoritmos genéticos se inspiran en la evolución biológica y aplican operadores genéticos como selección, cruce y mutación en poblaciones de pruebas para mejorar la cobertura y calidad de los casos de prueba generados.
+
+EvoSuite emplea dos técnicas principales:
+
+1. Generación del conjunto de pruebas completo (Whole test suite generation):
+En lugar de optimizar metas de cobertura individuales, EvoSuite se enfoca en optimizar un criterio de cobertura general. Esto evita que el resultado se vea negativamente influenciado por el orden o la dificultad de alcanzar metas de cobertura individuales. Al optimizar la cobertura de manera integral, la herramienta puede producir conjuntos de pruebas más completos y representativos.
+
+2. Generación de aserciones basada en mutaciones (Mutation-based assertion generation):
+Esta técnica se centra en evaluar la efectividad de los casos de prueba generados. Para ello, se ejecutan las pruebas en unidades de prueba (UUT) con algunas modificaciones o mutaciones en el código. Aquellas pruebas que detecten los errores introducidos por las mutaciones reciben una mejor puntuación, ya que se consideran más valiosas. Finalmente, se selecciona el subconjunto más pequeño de pruebas que es capaz de detectar las mutaciones, lo que garantiza una cobertura efectiva y eficiente de las posibles fallas en el software.
+
+La combinación de búsqueda híbrida, ejecución simbólica dinámica y transformación de testabilidad, junto con el uso de algoritmos genéticos, hacen que EvoSuite sea una herramienta poderosa para la generación automática de conjuntos de pruebas. Esta aproximación ha demostrado ser efectiva en diversos contextos de desarrollo de software, y ha ayudado a mejorar la calidad y confiabilidad de los programas bajo prueba.
+
+
+\section{Contratos con Daikon}
+
+Daikon es una herramienta que emplea técnicas de aprendizaje automático para llevar a cabo la detección dinámica de posibles invariantes en el código de programas. Utiliza datos recopilados durante múltiples ejecuciones del programa para analizar patrones y descubrir propiedades que se mantienen constantes a lo largo de todas las ejecuciones.
+
+A través de un proceso de aprendizaje automático, Daikon busca identificar invariantes relevantes que puedan ser representativos del comportamiento general del programa. Estas propiedades se consideran como reglas generales que deben cumplirse en todas las instancias del programa.
+
+Daikon utiliza una gramática de propiedades y variables para definir qué tipo de invariantes buscar. Las propiedades pueden ser de diferentes formas, como comparaciones numéricas, relaciones entre variables, o incluso estructuras de datos complejas. Las variables representan los valores que se recopilan durante la ejecución del programa.
+
+Las aplicaciones de Daikon son diversas y abarcan desde la documentación del programa, hasta la detección y prevención de errores (bugs), debugging, testing, verificación de propiedades, análisis de estructuras de datos y corrección de inconsistencias.
+
+
+\section{Contratos con SpecFuzzer}
+
+SpecFuzzer es una técnica que se utiliza para...
+
+\section{Ejemplos de generación de oráculos}
+
+\begin{lstlisting}[style=javastyle, caption=Ejemplo StackAr.top, label=lst:top]
+/**
+ * Array-based implementation of the stack.
+ * @author Mark Allen Weiss
+ */
+public class StackAr {
+    /**
+     * Construct the stack.
+     * @param capacity the capacity.
+     */
+    public StackAr( int capacity )
+    {
+        theArray = new Object[ capacity ];
+        topOfStack = -1;
+    }
+
+    /**
+     * Test if the stack is logically empty.
+     * @return true if empty, false otherwise.
+     * @observer // annotation added by Jeremy
+     */
+    public boolean isEmpty( )
+    {
+        return topOfStack == -1;
+    }
+
+    /**
+     * Get the most recently inserted item in the stack.
+     * Does not alter the stack.
+     * @return the most recently inserted item in the stack, or null, if empty.
+     * @observer // annotation added by Jeremy
+     */
+    public Object top( )
+    {
+        if( isEmpty( ) )
+            return null;
+        Object result = theArray[ topOfStack ];
+    	assert(true);
+        return result;
+    }
+}
+\end{lstlisting}
+
+
+\subsection{Randoop}.
+
+
+\begin{lstlisting}[style=javastyle, caption=Aserción generada con Randoop, label=lst:randoop]
+@Test
+public void test062() throws Throwable {
+    if (debug)
+        System.out.format("%n%s%n", "RegressionTest0.test062");
+    DataStructures.StackAr stackAr1 = new DataStructures.StackAr(6);
+    boolean boolean2 = stackAr1.isEmpty();
+    stackAr1.push((java.lang.Object) 5L);
+    boolean boolean5 = stackAr1.isEmpty();
+    stackAr1.pop();
+    java.lang.Object obj7 = stackAr1.top();
+    stackAr1.makeEmpty();
+    org.junit.Assert.assertTrue("'" + boolean2 + "' != '" + true + "'", boolean2 == true);
+    org.junit.Assert.assertTrue("'" + boolean5 + "' != '" + false + "'", boolean5 == false);
+    org.junit.Assert.assertNull(obj7);
+}
+\end{lstlisting}
+
+
+\subsection{Daikon}
+
+\begin{lstlisting}[style=javastyle, caption=Aserción generada con Daikon, label=lst:daikon]
+DataStructures.StackAr.top():::EXIT76
+daikon.Quant.eltsEqual(this.theArray, null)
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this.theArray), null)
+this.topOfStack == -1
+\result == null
+daikon.Quant.eltsEqual(this.theArray, \result)
+
+\end{lstlisting}

@@ -1,0 +1,11 @@
+mutant id,mutation,failing test,assertions failures,non assertions failures
+1,STD,300,10,290
+2,LVR,26,16,10
+3,LVR,26,16,10
+4,STD,94,37,57
+5,LVR,26,16,10
+6,LVR,26,16,10
+7,ROR,26,16,10
+8,ROR,232,29,203
+9,ROR,0,0,0
+...,...,...,...,...
