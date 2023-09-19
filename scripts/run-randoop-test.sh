@@ -40,7 +40,7 @@ do
   fail=$(echo "$out" | grep "Tests run: \|OK (")
   echo "> Fail: "$fail
   fail_detail=$(echo "$out" | grep "java.lang.AssertionError")
-  fail_detail_timeout=$(echo "$out" | grep "org.junit.runners.model.TestTimedOutException")
+  # fail_detail_timeout=$(echo "$out" | grep "org.junit.runners.model.TestTimedOutException")
   # echo "> Fail Detail: "$fail_detail_timeout
   failing_test=0
   if [ ! -z "${fail_detail}" ]; then

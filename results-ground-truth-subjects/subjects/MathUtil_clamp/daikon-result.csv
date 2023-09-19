@@ -1,0 +1,12 @@
+mutant_id,mutation,failing_test
+1,ROR,0
+2,ROR,
+3,ROR,0
+4,EVR,0
+5,ROR,0
+6,ROR,0
+7,ROR,0
+8,EVR,0
+9,EVR,0
+10,LVR,0
+11,EVR,0

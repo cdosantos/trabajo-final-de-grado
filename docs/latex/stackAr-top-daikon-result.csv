@@ -1,0 +1,11 @@
+mutant id,mutation,failing test
+1,STD,6
+2,LVR,0
+3,LVR,0
+4,STD,0
+5,LVR,0
+6,LVR,0
+7,ROR,0
+8,ROR,0
+9,ROR,0
+...,...,...

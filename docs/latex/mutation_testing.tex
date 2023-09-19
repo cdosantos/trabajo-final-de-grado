@@ -1,0 +1,44 @@
+\chapter{Mutation Testing}
+
+El concepto de Pruebas de Mutación (Mutation Testing) se introdujo en la década de 1970 como un método para evaluar la efectividad de un conjunto de pruebas en la detección de fallas y para identificar sus puntos débiles.
+
+El enfoque de las Pruebas de Mutación implica la inserción deliberada de defectos comunes en el código fuente, creando así versiones modificadas del programa llamadas mutantes. Luego, estos mutantes se someten a la ejecución del conjunto de pruebas existente, con el propósito de verificar si los defectos son detectados por las pruebas o no.
+
+Un mutante que es detectado y produce un fallo se considera "muerto" y se descarta como no relevante. Por el contrario, aquellos mutantes que no son detectados (llamados "vivos") revelan posibles debilidades en el conjunto de pruebas, ya que representan fallas potenciales no detectadas.
+
+La calidad de un conjunto de pruebas se evalúa según la cantidad de mutantes detectados. Si un conjunto de pruebas no logra detectar mutantes, se considera débil y propenso a contener fallas no detectadas. Por el contrario, cuantos más mutantes sean detectados por las pruebas, mayor será la confiabilidad del conjunto de pruebas y la capacidad para encontrar posibles errores.
+
+Por todas estas razones, utilizar Mutation Testing para evaluar la calidad de las pruebas y los invariantes generados es un enfoque confiable y efectivo. Al someter el software a mutantes deliberados y analizar cómo las pruebas responden ante estas versiones modificadas, se puede obtener una evaluación objetiva de la capacidad de detección de fallas del conjunto de pruebas y, en consecuencia, identificar áreas de mejora en el proceso de pruebas y desarrollo de software.
+
+
+\section{Major}
+
+Major es un framework usado para el análisis de mutación en el ámbito de la programación y prueba de software.
+
+\subsection{Operadores de mutación}
+
+Major incluye los siguientes operadores de mutación: 
+
+\begin{itemize}
+  \item AOR (Arithmetic Operator Replacement), el cual reemplaza operadores aritméticos binarios por otros compatibles. Ej: a + b ==> a - b
+  \item COR (Conditional Operator Replacement), el cual reemplaza operadores condicionales por otros compatibles. Ej: a || b ==> a && b
+  \item LOR (Logical Operator Replacement), el cual reemplaza operadores lógicos por otros compatibles. Ej: a ^ b ==> a | b
+  \item ROR (Relational Operator Replacement), el cual reemplaza operadores relacionales por otros compatibles. Ej: a == b ==> a >= b
+  \item SOR (Shift Operator Replacement), el cual reemplaza operadores de desplazamientos de bits por otros compatibles. Ej: a >> b ==> a << b
+  \item ORU (Operator Replacement Unary), el cual reemplaza operadores unarios por otros compatibles. Ej: -a ==> ~a
+  \item LVR (Literal Value Replacement), el cual reemplaza un literal por un valor por defecto. Ej: val = 0 ==> 1 and -1
+  \item EVR (Expression Value Replacement), el cual reemplaza una expresión por un valor por defecto. Ej: return a ==> return 0
+  \item STD (Statement Deletion), Omite sentencias simples del tipo return, break, continue, llamadas a métodos, asignaciones, pre y pos incremento.
+\end{itemize}
+
+
+\subsection{Para el ejemplo de la sección 2}
+
+\begin{lstlisting}[style=javastyle, caption=Mutaciones StackAr.top, label=lst:major]
+31:COR:isEmpty():TRUE:DataStructures.StackAr@top():75:isEmpty() |==> false
+32:COR:isEmpty():FALSE:DataStructures.StackAr@top():75:isEmpty() |==> true
+33:STD:<RETURN>:<NO-OP>:DataStructures.StackAr@top():76:return null; |==> <NO-OP>
+34:EVR:<ARRAY_ACCESS(java.lang.Object)>:<DEFAULT>:DataStructures.StackAr@top():77:theArray[topOfStack] |==> null
+35:LVR:TRUE:FALSE:DataStructures.StackAr@top():78:true |==> false
+36:EVR:<IDENTIFIER(java.lang.Object)>:<DEFAULT>:DataStructures.StackAr@top():79:result |==> null
+\end{lstlisting}
