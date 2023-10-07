@@ -1,8 +1,5 @@
 \chapter{Introducción}
 
-% Plantear marco general
-% En esta sección, se presenta una introducción al problema del oráculo, los diferentes tipos de oráculos y cómo se mide la calidad de los mismos.
-
 La calidad de los sistemas de software típicamente se define alrededor de varios aspectos, tales como confiabilidad, usabilidad, eficiencia, etc. Entre ellos, la confiabilidad es generalmente considerada una característica fundamental en lo que respecta a la calidad del software, y de gran interés en el proceso de desarrollo de software [0]. 
 
 Analizar la calidad del software está fuertemente relacionado con la tarea de encontrar defectos en el mismo, es decir, identificar algún comportamiento actual del software que difiera del comportamiento esperado. En este sentido, si se considera un determinado dato de entrada para un sistema, el desafío de distinguir el comportamiento correcto de uno incorrecto es conocido como el problema del oraculo []. Es esperable que esta tarea se pueda realizar con el menor costo posible y con los mayores beneficios, garantizando que el sistema funcione correctamente para distintos valores de entrada. 
@@ -17,11 +14,11 @@ En las últimas décadas, con el objetivo de ayudar a los desarrolladores a equi
 
 La principal hipótesis de trabajo es que el tipo de aserciones de regresión utilizadas en testing de regresión, ya sean aserciones de test o aserciones de contratos, puede tener un impacto considerable en la efectividad del análisis para detectar defectos producidos por cambios en el software.
 
-El objetivo principal de este trabajo es el estudio y análisis de la efectividad de distintas aserciones de regresión para detectar errores durante la tarea de testing de regresión. Esencialmente, se desea analizar la efectividad de las aserciones de test en comparación con las aserciones de contratos. Para esta tarea, se propone, para diversos casos de estudio de la literatura, simular escenarios de testing de regresión utilizando, por un lado, aserciones de test, y por otro, aserciones de contratos, generadas automáticamente.
+El objetivo principal de este trabajo es el estudio y análisis de la efectividad de distintas aserciones de regresión para detectar errores durante la tarea de testing de regresión. Esencialmente, se desea analizar la efectividad de las aserciones de test en comparación con las aserciones de contratos. Para esta tarea, se propone, para diversos casos de estudio de la literatura, simular escenarios de testing de regresión utilizando, por un lado, aserciones de test, y por otro, aserciones de contratos, generadas automáticamente. 
 
 En particular se pone el foco en las aserciones generadas por herramientas del estado del arte de generación automática de tests como Randoop[0] y Daikon[0]. 
 
-A modo de ejemplo consideremos la implementación de nodo de listas doblemente enlazadas con su método insertRight.
+A modo de ejemplo consideremos la implementación de nodo de listas doblemente enlazadas con su método insertRight en el lenguaje de programación Java.
 
 \begin{figure}[ht]
 \centering
@@ -38,7 +35,9 @@ A modo de ejemplo consideremos la implementación de nodo de listas doblemente e
 \label{fig:DoubleLinkedListNodeInsertRight}
 \end{figure}
 
-A modo de ilustración en la siguiente imágen se puede ver un caso de test generado por Randoop y un contrato generado por Daikon.
+Supongamos ahora que es necesario modificar parte del sistema, y antes de hacerlo sería útil tener aserciones que ayuden a detectar posibles errores que puedan ser insertados durante la actualización con el fin de preservar el comportamiento del sistema.
+Para ello se podría considerar automáticamente aserciones de test y de contratos.
+En la siguiente imágen se puede ver un caso de test generado por Randoop y un contrato generado por Daikon.
 
 \begin{figure}[ht]
 \centering
@@ -46,3 +45,7 @@ A modo de ilustración en la siguiente imágen se puede ver un caso de test gene
 \caption{Test y contrato generados automáticamente por Randoop y Daikon respectivamente para el método insertRight}
 \label{fig:DoubleLinkedListNodeTests}
 \end{figure}
+
+De esta manera, sin demasiado esfuerzo, se han generado automáticamente aserciones que podrían ayudarnos a detectar errores introducidos durante la actualización del sistema. Pero, ¿qué tan efectivos son estas aserciones para detectar errores?. O incluso, ¿cuál tipo de aserción es más eficiente?.
+
+Para dar respuesta a estas preguntas se propone simular escenarios de testing de regresión, introduciendo defectos en el código, técnica conocida como Pruebas de Mutación [], para evaluar la efectividad de las aserciones generadas.
