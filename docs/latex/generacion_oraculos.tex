@@ -2,13 +2,18 @@
 
 La generación automática de oráculos es una técnica innovadora en el campo de la verificación y validación de software que busca abordar uno de los desafíos más complejos en el proceso de pruebas: la creación confiable y precisa de oráculos de prueba.
 
-En el contexto de las pruebas de software, un oráculo es un mecanismo que compara los resultados esperados de un programa con los resultados reales obtenidos durante la ejecución de las pruebas. El oráculo determina si el programa se comporta correctamente o si existen discrepancias que indiquen la presencia de errores o fallos.
+% En el contexto de las pruebas de software, un oráculo es un mecanismo que compara los resultados esperados de un programa con los resultados reales obtenidos durante la ejecución de las pruebas. El oráculo determina si el programa se comporta correctamente o si existen discrepancias que indiquen la presencia de errores o fallos.
 
 La generación automática de oráculos tiene como objetivo reducir la intervención manual en la creación de estos oráculos, lo que a menudo es una tarea laboriosa y propensa a errores. Utilizando un conjunto diverso de técnicas que incluyen inteligencia artificial, machine learning, análisis estático, dinámico y también técnicas aleatorias, esta metodología permite inferir o construir automáticamente oráculos precisos y efectivos para diferentes tipos de pruebas.
 
-\section{Unit Assertions con Randoop/EvoSuite}
+\section{Generación automática de aserciones}
 
-\subsection{Randoop}
+\subsection{Técnicas estáticas}
+
+
+\subsection{Técnicas dinámicas}
+
+Entre las herramientas de generación de aserciones con técnicas dinámicas podemos encontrar ... 
 
 Randoop propone una mejora a la generación de pruebas aleatorias mediante la utilización de una técnica llamada generación de pruebas aleatorias dirigidas por retroalimentación (Feedback-directed Random Test Generation).
 
@@ -18,8 +23,6 @@ Por otro lado, las secuencias que no cumplen con uno o más de los contratos est
 
 El enfoque de generación de pruebas aleatorias dirigidas por retroalimentación de Randoop representa un intento significativo para mejorar la efectividad del testing aleatorio al combinarlo con criterios de selección más inteligentes y evaluaciones de calidad. Al hacerlo, se logra una mayor cobertura de pruebas y se descubren más escenarios de prueba, lo que puede llevar a una mejor detección y corrección de errores en el software bajo evaluación. Este enfoque se ha mostrado prometedor en muchos entornos de desarrollo y se considera una herramienta valiosa para la mejora del proceso de testing en el desarrollo de software.
 
-
-\subsection{EvoSuite}
 
 EvoSuite es una herramienta de generación automática de conjuntos de pruebas para software orientado a objetos, que emplea un enfoque basado en algoritmos de búsqueda. Esta técnica combina diversas estrategias, como búsqueda híbrida, ejecución simbólica dinámica y transformación de testabilidad, para lograr una generación de pruebas más eficiente y efectiva.
 
@@ -36,7 +39,9 @@ Esta técnica se centra en evaluar la efectividad de los casos de prueba generad
 La combinación de búsqueda híbrida, ejecución simbólica dinámica y transformación de testabilidad, junto con el uso de algoritmos genéticos, hacen que EvoSuite sea una herramienta poderosa para la generación automática de conjuntos de pruebas. Esta aproximación ha demostrado ser efectiva en diversos contextos de desarrollo de software, y ha ayudado a mejorar la calidad y confiabilidad de los programas bajo prueba.
 
 
-\section{Contratos con Daikon}
+\section{Generación automática de contratos}
+
+Entre las herramientas de generación automática de contratos ...
 
 Daikon es una herramienta que emplea técnicas de aprendizaje automático para llevar a cabo la detección dinámica de posibles invariantes en el código de programas. Utiliza datos recopilados durante múltiples ejecuciones del programa para analizar patrones y descubrir propiedades que se mantienen constantes a lo largo de todas las ejecuciones.
 
@@ -46,8 +51,6 @@ Daikon utiliza una gramática de propiedades y variables para definir qué tipo 
 
 Las aplicaciones de Daikon son diversas y abarcan desde la documentación del programa, hasta la detección y prevención de errores (bugs), debugging, testing, verificación de propiedades, análisis de estructuras de datos y corrección de inconsistencias.
 
-
-\section{Contratos con SpecFuzzer}
 
 SpecFuzzer es una técnica que se utiliza para...
 
