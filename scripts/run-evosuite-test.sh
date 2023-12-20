@@ -32,7 +32,9 @@ do
   for filename in ${output_dir}evosuite/bin/$class_path/*.class
   do
     test=`basename "$filename" .class`
-    tests_files="$tests_files $package.$test"
+    if [[ "$test" != 'StackAr_ESTest_scaffolding' ]] ; then
+      tests_files="$tests_files $package.$test"
+    fi
   done
   out=$(java -cp $mutants_dir:${subject_jar}:${output_dir}evosuite/bin:$junit:$hamcrest:$EVOSUITE_STANDALONE org.junit.runner.JUnitCore $tests_files)
   fail=$(echo "$out" | grep "Tests run: \|OK (")
