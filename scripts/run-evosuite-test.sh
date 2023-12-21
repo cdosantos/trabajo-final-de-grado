@@ -32,7 +32,7 @@ do
   for filename in ${output_dir}evosuite/bin/$class_path/*.class
   do
     test=`basename "$filename" .class`
-    if [[ "$test" != 'StackAr_ESTest_scaffolding' ]] ; then
+    if [[ "$test" != *'_scaffolding'* ]] ; then
       tests_files="$tests_files $package.$test"
     fi
   done
