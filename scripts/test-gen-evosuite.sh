@@ -31,7 +31,7 @@ method_without_args=${method_without_args%%\\*} # getMin fix '\'
 cd ${source_dir}
 
 echo -e "${GREEN}Running evosuite for ${class}.${method_without_args}...${NC}"
-$EVOSUITE -class ${class} -Dsearch_budget=10 -projectCP build/classes/java/main/ -Dtarget_method=${method_without_args}
+$EVOSUITE -class ${class} -Dsearch_budget=10 -projectCP ${subject_jar} -Dtarget_method=${method_without_args}
 
 echo '> Compiling tests'
 cd evosuite-tests
