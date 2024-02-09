@@ -14,6 +14,9 @@ ListComp02.insert_s,257,20,17
 Map.count,,63,5
 Map.extend,210,63,13
 Map.remove,0,63,5
+MaxBag.add,331,748,631
+MaxBag.getMax,0,749,0
+MaxBag.remove,237,748,636
 MathUtil.clamp,50,11,0
 MathUtilsNew.copySignInt,36,49,1
 MinFinder.findMin,0,69,0
