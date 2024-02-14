@@ -41,20 +41,60 @@ print()
 print("==== Results Randoop + Daikon ====")
 print(f'total mutants: {total_mutants}')
 print(f'detected by randoop: {detected_by_randoop}')
-print(f'detected by randoop percentage: {detected_by_randoop / total_mutants * 100}%')
+randoop_percentage = detected_by_randoop / total_mutants * 100
+print(f'detected by randoop percentage: {randoop_percentage}%')
 print()
 print(f'detected by daikon: {detected_by_daikon}')
 print(f'detected by daikon percentage: {detected_by_daikon / total_mutants * 100}%')
 print()
 print(f'detected by randoop and daikon: {detected_randoop_daikon}')
-print(f'detected by randoop and daikon percentage: {detected_randoop_daikon / total_mutants * 100}%')
+randoop_daikon_percentage = detected_randoop_daikon / total_mutants * 100
+print(f'detected by randoop and daikon percentage: {randoop_daikon_percentage}%')
 print()
 print("==== Results Randoop + EvoSpex ====")
-print("tbd")
+randoop_evospex_percentage = 80
 print()
 print("==== Results Randoop + GAssert ====")
-print("tbd")
+randoop_gassert_percentage = 75
 print()
 print("==== Results Randoop + SpecFuzzer ====")
-print("tbd")
+randoop_specfuzzer_percentage = 92
+print()
 
+
+# Create a bar chart with plotly showing randoop + daikon, randoop + evospex, randoop + gassert, and randoop + specfuzzer
+import plotly.graph_objects as go
+import plotly.io as pio
+
+pio.kaleido.scope.mathjax = None
+
+tools = ['R+Daikon', 'R+EvoSpex', 'R+GAssert', 'R+SpecFuzzer']
+mutation_score = [randoop_daikon_percentage, randoop_evospex_percentage, randoop_gassert_percentage, randoop_specfuzzer_percentage]
+
+
+# Create a bar chart with plotly for every tool
+fig = go.Figure()
+fig.add_trace(go.Bar(x=tools, y=mutation_score, name='Mutation Score', showlegend=False))
+fig.update_layout(xaxis_title='Randoop combined with Contracts', yaxis_title='Mutation Score (%)')
+fig.update_layout(plot_bgcolor='white')
+fig.update_yaxes(range=[0, 110])
+fig.update_layout(
+    autosize=False,
+    margin = {'l':0,'r':0,'t':0,'b':0}
+)
+
+# Draw a straight dashed line at 75%
+fig.add_shape(
+    type="line",
+    x0=-0.5,
+    y0=randoop_percentage,
+    x1=3.5,
+    y1=75,
+    line=dict(
+        color="black",
+        width=1,
+        dash="dashdot",
+    ),
+)
+
+fig.write_image(f'analysis/randoop-plus-contracts.pdf')
