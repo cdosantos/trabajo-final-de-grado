@@ -14,17 +14,17 @@ def merge_values(valor1, valor2):
     
 def merge_effectiveness(x_df, y_df):
     merge_df = x_df[['mutant_id', 'mutation']].copy()
-    daikon_failing_test = x_df["failing_test"]
-    randoop_failing_test = y_df["failing_test"]
-    merge_df['failing_test'] = daikon_failing_test.combine(randoop_failing_test, merge_values)
+    x_failing_test = x_df["failing_test"]
+    y_failing_test = y_df["failing_test"]
+    merge_df['failing_test'] = x_failing_test.combine(y_failing_test, merge_values)
     return merge_df  
 
 tool_1 = sys.argv[1]
 tool_2 = sys.argv[2]
 dir = os.environ['OUTPUT']+"/subjects"
 result_files = os.listdir(dir)
-merge_result_file = dir+"/../../merge-"+tool_1+"-"+tool_2+"-results.csv"
-merge_result_by_mutation_file = dir+"/../../merge-results-by-mutation-"+tool_1+"-"+tool_2+".csv"
+merge_result_file = dir+"/../../results/detected-mutants-"+tool_1+"-"+tool_2+".csv"
+merge_result_by_mutation_file = dir+"/../../results/detected-mutants-by-mutation-"+tool_1+"-"+tool_2+".csv"
 result_files.sort()
 data = []
 datos_combinados = pd.DataFrame(columns=['mutant_id', 'mutation', 'failing_test'])
