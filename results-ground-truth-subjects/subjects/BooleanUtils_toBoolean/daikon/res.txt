@@ -1,0 +1,8 @@
+===========================================================================
+lang3.BooleanUtils.toBoolean(java.lang.Integer, java.lang.Integer, java.lang.Integer):::ENTER
+value == falseValue
+value != null
+trueValue != null
+===========================================================================
+lang3.BooleanUtils.toBoolean(java.lang.Integer, java.lang.Integer, java.lang.Integer):::EXIT
+\result == false
