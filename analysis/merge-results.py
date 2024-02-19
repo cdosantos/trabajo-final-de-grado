@@ -24,7 +24,7 @@ tool_2 = sys.argv[2]
 dir = os.environ['OUTPUT']+"/subjects"
 result_files = os.listdir(dir)
 merge_result_file = dir+"/../../results/detected-mutants-"+tool_1+"-"+tool_2+".csv"
-merge_result_by_mutation_file = dir+"/../../results/detected-mutants-by-mutation-"+tool_1+"-"+tool_2+".csv"
+merge_result_by_mutation_file = dir+"/../../results/detected-by-mutation-"+tool_1+"-"+tool_2+".csv"
 result_files.sort()
 data = []
 datos_combinados = pd.DataFrame(columns=['mutant_id', 'mutation', 'failing_test'])

@@ -1,8 +1,16 @@
+# run example:
+# python3 effectiveness-by-mutation-type.py randoop daikon
+# python3 effectiveness-by-mutation-type.py randoop evosuite
+
 import os
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 
-root = os.path.join(os.environ["OUTPUT"], "../")
+tool01 = sys.argv[1]
+tool02 = sys.argv[2]
+
+root = os.path.join(os.environ["OUTPUT"], "../results")
 full_dir = os.environ["OUTPUT"]+"/subjects"
 subjects = os.listdir(full_dir)
 subjects.sort()
@@ -40,15 +48,14 @@ def build_chart(data, tool):
 
     plt.savefig("./"+tool+"-effectiveness-by-mutant.pdf", format="pdf")
     
-
-tools = ["randoop", "daikon"]
+tools = [tool01, tool02]
 for tool in tools:
     res = find_by_mutation(tool)
-    results_by_mutation_type_csv = os.path.join(root, tool + "-results-by-mutation-type.csv")
+    results_by_mutation_type_csv = os.path.join(root, "detected-by-mutation-"+tool+".csv")
     res.to_csv(results_by_mutation_type_csv)
     build_chart(res, tool)
 
-data = pd.read_csv(os.path.join(root, "merge-results-by-mutation.csv"), index_col=0)
-build_chart(data, 'randoop-daikon')
+data = pd.read_csv(os.path.join(root, "detected-by-mutation-"+tool01+"-"+tool02+".csv"), index_col=0)
+build_chart(data, tool01+"-"+tool02)
 
 print("Done!")
