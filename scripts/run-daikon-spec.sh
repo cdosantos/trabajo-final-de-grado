@@ -31,9 +31,10 @@ mutants=0
 detected_mutants=0
 echo "mutant_id,mutation,failing_test" > ${output_dir}daikon-result.csv
 echo $class_name.$method_without_args > ${output_dir}daikon.log
-for mutants_dir in ${output_dir}mutants/*/
+for mutant_number in `ls -v ${output_dir}mutants/`
 do
   mutants=$((mutants + 1))
+  mutants_dir=${output_dir}mutants/$mutant_number
   mutation=$(tail -n+$mutants "$output_dir"mutants.log | head -1 | cut -d':' -f 2)
   echo '> Going to run DynComp'
   dyncomp_log=$(timeout --foreground 5m java -cp ${output_dir}randoop/bin/:${daikon_path}/daikon.jar:$mutants_dir:${subject_jar} daikon.DynComp --output-dir=$mutants_dir$class_path ${package}.RegressionTestDriver)

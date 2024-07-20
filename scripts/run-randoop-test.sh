@@ -23,9 +23,10 @@ tests=0
 mutants=0
 detected_mutants=0
 echo "mutant_id,mutation,failing_test,assertions_failures,non_assertions_failures" > ${output_dir}randoop-result.csv
-for mutants_dir in ${output_dir}mutants/*/
+for mutant_number in `ls -v ${output_dir}mutants/`
 do
   mutants=$((mutants + 1))
+  mutants_dir=${output_dir}mutants/$mutant_number
   mutation=$(tail -n+$mutants "$output_dir"mutants.log | head -1 | cut -d':' -f 2)
   echo '> Running tests'
   tests_files=""

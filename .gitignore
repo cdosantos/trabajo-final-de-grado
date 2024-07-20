@@ -1,2 +1,9 @@
 notas.md
 init_env.sh
+lib
+results-ground-truth-subjects/subjects/**/daikon/*.dtrace.gz
+results-ground-truth-subjects/subjects/**/daikon/*.decls-DynComp
+results-ground-truth-subjects/subjects/**/evosuite/bin/
+results-ground-truth-subjects/subjects/**/randoop/bin/
+results-ground-truth-subjects/subjects/**/states/
+results-ground-truth-subjects/subjects/**/bin/
