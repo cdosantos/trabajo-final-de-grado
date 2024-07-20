@@ -1,0 +1,22 @@
+===========================================================================
+examples.RingBuffer:::OBJECT
+this.data != null
+this.start == 1 || this.start == 2 || this.start == 3
+this.free == 1 || this.free == 2 || this.free == 3
+daikon.Quant.size(this.data) == 1 || daikon.Quant.size(this.data) == 2 || daikon.Quant.size(this.data) == 3
+this.free % this.start == 0
+this.start <= this.free
+this.start <= this.capacity_
+this.free <= this.capacity_
+===========================================================================
+examples.RingBuffer.count():::ENTER
+===========================================================================
+examples.RingBuffer.count():::EXIT
+this.data == \old(this.data)
+daikon.Quant.pairwiseEqual(this.data, \old(this.data))
+this.start == \old(this.start)
+this.free == \old(this.free)
+this.capacity_ == \old(this.capacity_)
+\result == 0 || \result == 1 || \result == 2
+this.free > \result
+this.capacity_ > \result

@@ -1,0 +1,163 @@
+===========================================================================
+examples.Composite:::OBJECT
+this == this.max_child.parent
+this.children == this.max_child.parent.children
+this.children.getClass().getName() == this.parent.children.getClass().getName()
+this.children.getClass().getName() == this.max_child.children.getClass().getName()
+this.parent == this.max_child.parent.parent
+this.parent.children.getClass().getName() == this.max_child.children.getClass().getName()
+this.parent.value == this.value
+this.parent.value == this.max_child.value
+this.parent.init_value == this.init_value
+this.parent.init_value == this.max_child.parent.init_value
+this.parent.ancestors.getClass().getName() == this.ancestors.getClass().getName()
+this.parent.ancestors.getClass().getName() == this.max_child.ancestors.getClass().getName()
+this.parent.max_child == this.max_child
+this.parent.max_child == this.max_child.parent.max_child
+this.parent.max_child.children == this.max_child.children
+this.parent.max_child.parent == this.max_child.parent
+this.parent.max_child.ancestors == this.max_child.ancestors
+this.value == this.max_child.value
+this.init_value == this.max_child.parent.init_value
+this.ancestors == this.max_child.parent.ancestors
+this.ancestors.getClass().getName() == this.max_child.ancestors.getClass().getName()
+this.max_child == this.max_child.parent.max_child
+this.children != null
+daikon.Quant.eltsNotEqual(this.children, null)
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this.children), "examples.Composite")
+this.children.getClass().getName() == java.util.LinkedList.class.getName()
+this.parent.children != null
+daikon.Quant.eltsNotEqual(this.parent.children, null)
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this.parent.children), new String[] { "examples.Composite" })
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this.parent.children), "examples.Composite")
+this.parent.children.getClass().getName() == java.util.LinkedList.class.getName()
+this.parent.parent == null
+this.parent.value == -3 || this.parent.value == 1
+this.parent.init_value == -3
+this.parent.ancestors != null
+this.parent.ancestors.getClass().getName() == java.util.HashSet.class.getName()
+("oneOf.java.jpp: SEQUENCE unimplemented" != null)
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this.parent.max_child.children), new String[] {  })
+this.parent.max_child.max_child == null
+this.value != 0
+this.init_value == -3 || this.init_value == 32 || this.init_value == 52
+this.init_value != 0
+this.ancestors != null
+this.ancestors.getClass().getName() == java.util.HashSet.class.getName()
+this.max_child.children != null
+("oneOf.java.jpp: SEQUENCE unimplemented" != null)
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this.max_child.children), new String[] {  })
+this.max_child.children.getClass().getName() == java.util.LinkedList.class.getName()
+this.max_child.parent != null
+this.max_child.parent.children != null
+("oneOf.java.jpp: SEQUENCE unimplemented" != null)
+daikon.Quant.eltsNotEqual(this.max_child.parent.children, null)
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this.max_child.parent.children), new String[] { "examples.Composite" })
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this.max_child.parent.children), "examples.Composite")
+this.max_child.parent.parent != null
+this.max_child.parent.init_value == -3
+this.max_child.parent.ancestors != null
+this.max_child.parent.max_child != null
+this.max_child.value == 1
+this.max_child.ancestors != null
+this.max_child.ancestors.getClass().getName() == java.util.HashSet.class.getName()
+this.max_child.max_child == null
+daikon.Quant.size(this.children) == 0 || daikon.Quant.size(this.children) == 1 || daikon.Quant.size(this.children) == 2
+daikon.Quant.size(this.parent.children) == 1
+daikon.Quant.size(this.max_child.parent.children) == 1
+this.children.getClass().getName() != this.parent.ancestors.getClass().getName()
+this.children.getClass().getName() != this.ancestors.getClass().getName()
+this.parent.children.getClass().getName() != this.parent.ancestors.getClass().getName()
+this.parent.children.getClass().getName() != this.ancestors.getClass().getName()
+this.parent.value >= this.parent.init_value
+this.init_value % this.parent.value == 0
+this.parent.value >= this.init_value
+this.parent.init_value <= this.value
+this.init_value % this.value == 0
+this.value >= this.init_value
+===========================================================================
+examples.Composite.addChild(examples.Composite):::ENTER
+this.children.getClass().getName() == c.children.getClass().getName()
+this.parent.parent == this.parent.max_child
+this.parent.parent == this.max_child
+this.parent.value == this.parent.init_value
+this.value == this.init_value
+this.ancestors.getClass().getName() == c.ancestors.getClass().getName()
+this.max_child == c.parent
+c.value == c.init_value
+daikon.Quant.eltsNotEqual(this.children, null)
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this.children), new String[] {  }) || daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this.children), new String[] { "examples.Composite" })
+this.parent.value == -3
+this.value == -3 || this.value == 32 || this.value == 52
+this.max_child == null
+c != null
+c.children != null
+("oneOf.java.jpp: SEQUENCE unimplemented" != null)
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(c.children), new String[] {  })
+c.value != 0
+c.ancestors != null
+c.max_child == null
+daikon.Quant.size(this.children) == 0 || daikon.Quant.size(this.children) == 1
+this.parent.value != c.value
+===========================================================================
+examples.Composite.addChild(examples.Composite):::EXIT
+this.children == c.parent.children
+this.children == \old(this.children)
+this.children.getClass().getName() == c.children.getClass().getName()
+this.children.getClass().getName() == c.parent.children.getClass().getName()
+this.children.getClass().getName() == \old(this.children.getClass().getName())
+this.children.getClass().getName() == \old(c.children.getClass().getName())
+this.parent == c.parent.parent
+this.parent == \old(this.parent)
+this.parent.children == \old(this.parent.children)
+daikon.Quant.pairwiseEqual(this.parent.children, \old(this.parent.children))
+this.parent.children.getClass().getName() == \old(this.parent.children.getClass().getName())
+this.parent.parent == \old(this.parent.parent)
+this.parent.parent == \old(this.parent.max_child)
+this.parent.parent == \old(this.max_child)
+this.parent.init_value == \old(this.parent.value)
+this.parent.init_value == \old(this.parent.init_value)
+this.parent.ancestors == \old(this.parent.ancestors)
+this.parent.ancestors.getClass().getName() == \old(this.parent.ancestors.getClass().getName())
+this.value == c.parent.value
+this.init_value == c.parent.init_value
+this.init_value == \old(this.value)
+this.init_value == \old(this.init_value)
+this.ancestors == c.parent.ancestors
+this.ancestors == \old(this.ancestors)
+this.ancestors.getClass().getName() == c.parent.ancestors.getClass().getName()
+this.ancestors.getClass().getName() == c.ancestors.getClass().getName()
+this.ancestors.getClass().getName() == \old(this.ancestors.getClass().getName())
+this.ancestors.getClass().getName() == \old(c.ancestors.getClass().getName())
+this.max_child == c.parent.max_child
+this.max_child.children == c.children
+this.max_child.parent == c.parent
+this.max_child.parent == \old(this)
+this.max_child.parent.max_child == \old(c)
+this.max_child.value == c.value
+this.max_child.ancestors == c.ancestors
+c.children == \old(c.children)
+daikon.Quant.pairwiseEqual(c.children, \old(c.children))
+c.parent == \old(this)
+c.value == c.init_value
+c.value == \old(c.value)
+c.value == \old(c.init_value)
+c.ancestors == \old(c.ancestors)
+c.max_child == \old(c.max_child)
+daikon.Quant.size(this.children)-1 == \old(daikon.Quant.size(this.children))
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this.children), new String[] { "examples.Composite" }) || daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this.children), new String[] { "examples.Composite", "examples.Composite" })
+c.children != null
+("oneOf.java.jpp: SEQUENCE unimplemented" != null)
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(c.children), new String[] {  })
+c.parent != null
+daikon.Quant.eltsNotEqual(c.parent.children, null)
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(c.parent.children), "examples.Composite")
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(c.parent.children), new String[] { "examples.Composite" }) || daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(c.parent.children), new String[] { "examples.Composite", "examples.Composite" })
+c.value != 0
+c.ancestors != null
+c.max_child == null
+daikon.Quant.size(this.children) == 1 || daikon.Quant.size(this.children) == 2
+daikon.Quant.size(c.parent.children) == 1 || daikon.Quant.size(c.parent.children) == 2
+this.parent.value >= c.value
+this.parent.init_value != c.value
+this.value >= c.value

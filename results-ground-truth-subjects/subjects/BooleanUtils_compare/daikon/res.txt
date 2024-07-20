@@ -1,0 +1,7 @@
+===========================================================================
+lang3.BooleanUtils:::OBJECT
+===========================================================================
+lang3.BooleanUtils.compare(boolean, boolean):::ENTER
+===========================================================================
+lang3.BooleanUtils.compare(boolean, boolean):::EXIT
+\result == -1 || \result == 0 || \result == 1

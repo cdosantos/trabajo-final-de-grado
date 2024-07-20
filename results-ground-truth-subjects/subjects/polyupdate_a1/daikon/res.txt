@@ -1,0 +1,10 @@
+===========================================================================
+examples.Polyupdate:::OBJECT
+===========================================================================
+examples.Polyupdate.a1(int):::ENTER
+===========================================================================
+examples.Polyupdate.a1(int):::EXIT
+this._var23 >= \old(this._var23)
+this._var23 != \old(this._var426)
+this._var23 != \old(y)
+this._var426 != \old(this._var23)

@@ -1,0 +1,53 @@
+===========================================================================
+DataStructures.QueueAr:::OBJECT
+this.theArray != null
+this.theArray.getClass().getName() == java.lang.Object[].class.getName()
+this.currentSize >= 0
+this.front >= 0
+this.currentSize <= daikon.Quant.size(this.theArray)
+this.front <= daikon.Quant.size(this.theArray)
+this.back <= daikon.Quant.size(this.theArray)-1
+===========================================================================
+DataStructures.QueueAr.dequeue():::ENTER
+this.front == 0 || this.front == 1 || this.front == 2
+daikon.Quant.size(this.theArray)-1 != 0
+this.currentSize != daikon.Quant.size(this.theArray)-1
+this.front != daikon.Quant.size(this.theArray)-1
+===========================================================================
+DataStructures.QueueAr.dequeue():::EXIT
+this.theArray == \old(this.theArray)
+this.theArray.getClass().getName() == \old(this.theArray.getClass().getName())
+this.back == \old(this.back)
+daikon.Quant.size(this.theArray) == \old(daikon.Quant.size(this.theArray))
+this.currentSize == 0 || this.currentSize == 1 || this.currentSize == 2
+daikon.Quant.size(this.theArray)-1 != 0
+this.theArray.getClass().getName() != \result.getClass().getName()
+this.currentSize <= \old(this.currentSize)
+this.currentSize != daikon.Quant.size(this.theArray)-1
+this.front >= \old(this.front)
+this.front != daikon.Quant.size(this.theArray)-1
+daikon.Quant.memberOf(\result.getClass().getName() , \old(daikon.Quant.typeArray(this.theArray)) )
+\old(this.currentSize) <= daikon.Quant.size(this.theArray)
+\old(this.currentSize) != daikon.Quant.size(this.theArray)-1
+\old(this.front) <= daikon.Quant.size(this.theArray)
+\old(this.front) != daikon.Quant.size(this.theArray)-1
+===========================================================================
+DataStructures.QueueAr.dequeueAll():::ENTER
+this.front == 0 || this.front == 1 || this.front == 2
+===========================================================================
+DataStructures.QueueAr.dequeueAll():::EXIT
+this.theArray == \old(this.theArray)
+this.theArray.getClass().getName() == \old(this.theArray.getClass().getName())
+this.back == \old(this.back)
+daikon.Quant.size(this.theArray) == \old(daikon.Quant.size(this.theArray))
+daikon.Quant.eltsEqual(this.theArray, null)
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this.theArray), null)
+this.currentSize == 0
+this.currentSize <= this.front
+this.currentSize <= \old(this.currentSize)
+this.currentSize <= \old(this.front)
+this.front >= \old(this.currentSize)
+this.front >= \old(this.front)
+\old(this.currentSize) <= daikon.Quant.size(this.theArray)
+\old(this.front) <= daikon.Quant.size(this.theArray)
+this.front - \old(this.currentSize) - \old(this.front) == 0

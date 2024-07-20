@@ -1,0 +1,13 @@
+===========================================================================
+examples.Map:::OBJECT
+this.keys != null
+this.data != null
+===========================================================================
+examples.Map.count():::ENTER
+===========================================================================
+examples.Map.count():::EXIT
+this.keys == \old(this.keys)
+daikon.Quant.pairwiseEqual(this.keys, \old(this.keys))
+this.data == \old(this.data)
+daikon.Quant.pairwiseEqual(this.data, \old(this.data))
+\result >= 0

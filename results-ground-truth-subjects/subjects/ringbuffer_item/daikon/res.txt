@@ -1,0 +1,21 @@
+===========================================================================
+examples.RingBuffer:::OBJECT
+this.data != null
+this.start == 1 || this.start == 2
+this.free == 2 || this.free == 3 || this.free == 4
+this.capacity_ == 8
+daikon.Quant.size(this.data) == 2 || daikon.Quant.size(this.data) == 3 || daikon.Quant.size(this.data) == 4
+this.start < this.free
+this.start < this.capacity_
+this.free < this.capacity_
+===========================================================================
+examples.RingBuffer.item():::ENTER
+===========================================================================
+examples.RingBuffer.item():::EXIT
+this.data == \old(this.data)
+daikon.Quant.pairwiseEqual(this.data, \old(this.data))
+this.start == \old(this.start)
+this.free == \old(this.free)
+this.capacity_ == \old(this.capacity_)
+\result.getClass().getName() == java.lang.String.class.getName()
+daikon.Quant.memberOf(\result.getClass().getName() , daikon.Quant.typeArray(this.data) )

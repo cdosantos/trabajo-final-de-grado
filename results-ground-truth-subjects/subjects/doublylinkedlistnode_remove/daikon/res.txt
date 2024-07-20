@@ -1,0 +1,34 @@
+===========================================================================
+examples.DoublyLinkedListNode:::OBJECT
+this == this.left.right
+this.left == this.left.left.right
+this.left == this.left.right.left
+this.left == this.right.left.left
+this.left.right == this.right.left
+this.left.right.right == this.right
+this.right == this.right.left.right
+this.right == this.right.right.left
+this.left != null
+this.left.left != null
+this.left.left.left != null
+this.left.right != null
+this.right != null
+this.right.right != null
+this.right.right.right != null
+===========================================================================
+examples.DoublyLinkedListNode.remove():::ENTER
+===========================================================================
+examples.DoublyLinkedListNode.remove():::EXIT
+this.left == this.left.left
+this.left == this.left.left.left
+this.left == this.left.right
+this.left == this.left.right.right
+this.left == this.right
+this.left == this.right.left
+this.left == this.right.left.right
+this.left == this.right.right
+this.left == this.right.right.left
+this.left == this.right.right.right
+this.left == \old(this)
+this.left == \old(this.left.right)
+this.left == \old(this.right.left)

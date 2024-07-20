@@ -1,0 +1,11 @@
+===========================================================================
+org.apache.commons.math3.util.FastMathNew:::CLASS
+===========================================================================
+org.apache.commons.math3.util.FastMathNew:::OBJECT
+===========================================================================
+org.apache.commons.math3.util.FastMathNew.floor(double):::ENTER
+===========================================================================
+org.apache.commons.math3.util.FastMathNew.floor(double):::EXIT123
+===========================================================================
+org.apache.commons.math3.util.FastMathNew.floor(double):::EXIT
+daikon.Quant.fuzzy.lte(\result, \old(x))

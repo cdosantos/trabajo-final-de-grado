@@ -1,0 +1,8 @@
+===========================================================================
+examples.SimpleMethods:::OBJECT
+===========================================================================
+examples.SimpleMethods.getMin(int, int):::ENTER
+===========================================================================
+examples.SimpleMethods.getMin(int, int):::EXIT
+\result <= \old(a)
+\result <= \old(b)

@@ -1,0 +1,49 @@
+===========================================================================
+DataStructures.StackAr:::OBJECT
+this.theArray != null
+this.theArray.getClass().getName() == java.lang.Object[].class.getName()
+this.topOfStack <= daikon.Quant.size(this.theArray)-1
+===========================================================================
+DataStructures.StackAr.topAndPop():::ENTER
+===========================================================================
+DataStructures.StackAr.topAndPop():::EXIT112
+daikon.Quant.pairwiseEqual(this.theArray, \old(this.theArray))
+this.topOfStack == \old(this.topOfStack)
+daikon.Quant.eltsEqual(this.theArray, null)
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this.theArray), null)
+this.topOfStack == -1
+\result == null
+===========================================================================
+DataStructures.StackAr.topAndPop():::EXIT116
+\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2
+daikon.Quant.getElement_Object(this.theArray, \old(this.topOfStack)) == null
+this.topOfStack < \old(this.topOfStack)
+this.topOfStack < daikon.Quant.size(this.theArray)-1
+daikon.Quant.memberOf(daikon.Quant.getElement_Object(this.theArray, \old(this.topOfStack)) , \old(this.theArray) )
+\old(this.topOfStack) < daikon.Quant.size(this.theArray)-1
+===========================================================================
+DataStructures.StackAr.topAndPop():::EXIT
+this.theArray == \old(this.theArray)
+this.theArray.getClass().getName() == \old(this.theArray.getClass().getName())
+daikon.Quant.size(this.theArray) == \old(daikon.Quant.size(this.theArray))
+(this.topOfStack == \old(this.topOfStack)) == (\old(this.topOfStack) == -1)
+(daikon.Quant.eltsEqual(\old(this.theArray), null)) || !(\old(this.topOfStack) == -1)
+(daikon.Quant.eltsEqual(\old(daikon.Quant.typeArray(this.theArray)), null)) || !(\old(this.topOfStack) == -1)
+(\result == null) || !(\old(this.topOfStack) == -1)
+(daikon.Quant.pairwiseEqual(this.theArray, \old(this.theArray))) || !(\old(this.topOfStack) == -1)
+(daikon.Quant.eltsEqual(this.theArray, null)) || !(\old(this.topOfStack) == -1)
+(daikon.Quant.eltsEqual(daikon.Quant.typeArray(this.theArray), null)) || !(\old(this.topOfStack) == -1)
+(this.topOfStack == -1) || !(\old(this.topOfStack) == -1)
+(this.topOfStack < \old(this.topOfStack)) == (\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2)
+(\old(this.topOfStack) < daikon.Quant.size(this.theArray)-1) || !(\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2)
+(daikon.Quant.memberOf(\result.getClass().getName() , \old(daikon.Quant.typeArray(this.theArray)) )) || !(\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2)
+(this.theArray.getClass().getName() != \result.getClass().getName()) || !(\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2)
+(daikon.Quant.getElement_Object(this.theArray, \old(this.topOfStack)) == null) || !(\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2)
+(daikon.Quant.memberOf(daikon.Quant.getElement_Object(this.theArray, \old(this.topOfStack)) , \old(this.theArray) )) || !(\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2)
+(this.topOfStack < daikon.Quant.size(this.theArray)-1) || !(\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2)
+(this.topOfStack == -1 || this.topOfStack == 0 || this.topOfStack == 1) || !(\old(this.topOfStack) == 0 || \old(this.topOfStack) == 1 || \old(this.topOfStack) == 2)
+this.topOfStack == -1 || this.topOfStack == 0 || this.topOfStack == 1
+this.theArray.getClass().getName() != \result.getClass().getName()
+this.topOfStack <= \old(this.topOfStack)
+daikon.Quant.memberOf(\result.getClass().getName() , \old(daikon.Quant.typeArray(this.theArray)) )
+\old(this.topOfStack) <= daikon.Quant.size(this.theArray)-1

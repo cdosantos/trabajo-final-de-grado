@@ -1,0 +1,4 @@
+mutant_id,mutation,failing_test,assertions_failures,non_assertions_failures
+1,ROR,0,0,0
+2,STD,1,1,0
+3,LVR,0,0,0

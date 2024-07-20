@@ -1,0 +1,12 @@
+mutant_id,mutation,failing_test,assertions_failures,non_assertions_failures
+1,ROR,1,1,0
+2,ROR,0,0,0
+3,ROR,2,2,0
+4,EVR,1,1,0
+5,ROR,1,1,0
+6,ROR,1,1,0
+7,ROR,1,1,0
+8,EVR,0,0,0
+9,EVR,1,1,0
+10,LVR,0,0,0
+11,EVR,1,1,0

@@ -1,0 +1,18 @@
+1:LVR:FALSE:TRUE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):51:false |==> true
+2:ROR:==(java.lang.Object,java.lang.Object):FALSE(java.lang.Object,java.lang.Object):lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):52:value == null |==> false
+3:ROR:==(java.lang.Object,java.lang.Object):FALSE(java.lang.Object,java.lang.Object):lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):53:trueValue == null |==> false
+4:LVR:TRUE:FALSE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):54:true |==> false
+5:STD:<ASSIGN>:<NO-OP>:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):54:result = true |==> <NO-OP>
+6:ROR:==(java.lang.Object,java.lang.Object):FALSE(java.lang.Object,java.lang.Object):lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):55:falseValue == null |==> false
+7:LVR:FALSE:TRUE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):56:false |==> true
+8:STD:<ASSIGN>:<NO-OP>:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):56:result = false |==> <NO-OP>
+9:COR:value.equals(trueValue):TRUE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):58:value.equals(trueValue) |==> false
+10:COR:value.equals(trueValue):FALSE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):58:value.equals(trueValue) |==> true
+11:LVR:TRUE:FALSE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):59:true |==> false
+12:STD:<ASSIGN>:<NO-OP>:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):59:result = true |==> <NO-OP>
+13:COR:value.equals(falseValue):TRUE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):60:value.equals(falseValue) |==> false
+14:COR:value.equals(falseValue):FALSE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):60:value.equals(falseValue) |==> true
+15:LVR:FALSE:TRUE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):61:false |==> true
+16:STD:<ASSIGN>:<NO-OP>:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):61:result = false |==> <NO-OP>
+17:LVR:TRUE:FALSE:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):66:true |==> false
+18:EVR:<IDENTIFIER(boolean)>:<DEFAULT>:lang3.BooleanUtils@toBoolean(java.lang.Integer,java.lang.Integer,java.lang.Integer):67:result |==> false

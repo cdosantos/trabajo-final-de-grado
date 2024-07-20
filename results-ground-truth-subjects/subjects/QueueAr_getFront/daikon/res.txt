@@ -1,0 +1,24 @@
+===========================================================================
+DataStructures.QueueAr:::OBJECT
+this.theArray != null
+this.theArray.getClass().getName() == java.lang.Object[].class.getName()
+this.currentSize == 0 || this.currentSize == 1 || this.currentSize == 2
+this.front == 0 || this.front == 1 || this.front == 2
+daikon.Quant.size(this.theArray)-1 != 0
+this.currentSize <= daikon.Quant.size(this.theArray)
+this.currentSize != daikon.Quant.size(this.theArray)-1
+this.front <= daikon.Quant.size(this.theArray)
+this.front != daikon.Quant.size(this.theArray)-1
+this.back <= daikon.Quant.size(this.theArray)-1
+===========================================================================
+DataStructures.QueueAr.getFront():::ENTER
+===========================================================================
+DataStructures.QueueAr.getFront():::EXIT
+this.theArray == \old(this.theArray)
+this.theArray.getClass().getName() == \old(this.theArray.getClass().getName())
+daikon.Quant.pairwiseEqual(this.theArray, \old(this.theArray))
+this.currentSize == \old(this.currentSize)
+this.front == \old(this.front)
+this.back == \old(this.back)
+this.theArray.getClass().getName() != \result.getClass().getName()
+daikon.Quant.memberOf(\result.getClass().getName() , daikon.Quant.typeArray(this.theArray) )

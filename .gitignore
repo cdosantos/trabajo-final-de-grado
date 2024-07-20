@@ -10,3 +10,4 @@ results-ground-truth-subjects/subjects/**/bin/
 results-ground-truth-subjects/subjects/**/mutants/**/*.class
 results-ground-truth-subjects/subjects/**/mutants/**/*.dtrace.gz
 results-ground-truth-subjects/subjects/**/mutants/**/*.decls-DynComp
+results-ground-truth-subjects/subjects/**/mutants/**/*.txt

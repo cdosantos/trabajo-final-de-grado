@@ -1,0 +1,17 @@
+===========================================================================
+examples.SimpleMethods:::CLASS
+examples.SimpleMethods.$assertionsDisabled == false
+===========================================================================
+examples.SimpleMethods:::OBJECT
+===========================================================================
+examples.SimpleMethods.incrementNumberAtIndex(int[], int):::ENTER
+intArray != null
+ind >= 0
+ind <= daikon.Quant.size(intArray)-1
+===========================================================================
+examples.SimpleMethods.incrementNumberAtIndex(int[], int):::EXIT
+examples.SimpleMethods.$assertionsDisabled == \old(examples.SimpleMethods.$assertionsDisabled)
+daikon.Quant.lexGT(intArray, \old(intArray))
+daikon.Quant.pairwiseGTE(intArray, \old(intArray))
+\old(ind) <= daikon.Quant.size(intArray)-1
+daikon.Quant.getElement_int(intArray, \old(ind)) - \old(daikon.Quant.getElement_int(intArray, ind)) - 1 == 0

@@ -1,0 +1,22 @@
+1:AOR:-(double,double):%(double,double):jts.Angle@getTurn(double,double):43:ang2 - ang1 |==> ang2 % ang1
+2:AOR:-(double,double):*(double,double):jts.Angle@getTurn(double,double):43:ang2 - ang1 |==> ang2 * ang1
+3:AOR:-(double,double):+(double,double):jts.Angle@getTurn(double,double):43:ang2 - ang1 |==> ang2 + ang1
+4:AOR:-(double,double):/(double,double):jts.Angle@getTurn(double,double):43:ang2 - ang1 |==> ang2 / ang1
+5:LVR:0:POS:jts.Angle@getTurn(double,double):45:0 |==> 1
+6:LVR:0:NEG:jts.Angle@getTurn(double,double):45:0 |==> -1
+7:ROR:>(double,double):!=(double,double):jts.Angle@getTurn(double,double):45:crossproduct > 0 |==> crossproduct != 0
+8:ROR:>(double,double):>=(double,double):jts.Angle@getTurn(double,double):45:crossproduct > 0 |==> crossproduct >= 0
+9:ROR:>(double,double):FALSE(double,double):jts.Angle@getTurn(double,double):45:crossproduct > 0 |==> false
+10:LVR:POS:0:jts.Angle@getTurn(double,double):46:1 |==> 0
+11:LVR:POS:NEG:jts.Angle@getTurn(double,double):46:1 |==> -1
+12:LVR:0:POS:jts.Angle@getTurn(double,double):47:0 |==> 1
+13:LVR:0:NEG:jts.Angle@getTurn(double,double):47:0 |==> -1
+14:ROR:<(double,double):!=(double,double):jts.Angle@getTurn(double,double):47:crossproduct < 0 |==> crossproduct != 0
+15:ROR:<(double,double):<=(double,double):jts.Angle@getTurn(double,double):47:crossproduct < 0 |==> crossproduct <= 0
+16:ROR:<(double,double):FALSE(double,double):jts.Angle@getTurn(double,double):47:crossproduct < 0 |==> false
+17:LVR:NEG:0:jts.Angle@getTurn(double,double):48:-1 |==> 0
+18:LVR:NEG:POS:jts.Angle@getTurn(double,double):48:-1 |==> 1
+19:LVR:0:POS:jts.Angle@getTurn(double,double):50:0 |==> 1
+20:LVR:0:NEG:jts.Angle@getTurn(double,double):50:0 |==> -1
+21:LVR:TRUE:FALSE:jts.Angle@getTurn(double,double):52:true |==> false
+22:EVR:<IDENTIFIER(int)>:<DEFAULT>:jts.Angle@getTurn(double,double):53:result |==> 0

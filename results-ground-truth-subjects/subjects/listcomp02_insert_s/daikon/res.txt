@@ -1,0 +1,30 @@
+===========================================================================
+examples.ListComp02:::OBJECT
+daikon.Quant.eltsNotEqual(this._var49, null)
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this._var49), "examples.R")
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this._var49), new String[] {  }) || daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this._var49), new String[] { "examples.R" })
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this._var50), "examples.S")
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this._var50), new String[] {  }) || daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this._var50), new String[] { "examples.S" })
+daikon.Quant.size(this._var49) == 0 || daikon.Quant.size(this._var49) == 1
+daikon.Quant.size(this._var50) == 0 || daikon.Quant.size(this._var50) == 1
+===========================================================================
+examples.ListComp02.insert_s(examples.S):::ENTER
+("oneOf.java.jpp: SEQUENCE unimplemented" != null)
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this._var50), new String[] {  })
+s.B != null
+s.B.toString().equals("")
+s.C != null
+===========================================================================
+examples.ListComp02.insert_s(examples.S):::EXIT
+this._var49 == \old(this._var49)
+daikon.Quant.pairwiseEqual(this._var49, \old(this._var49))
+this._var50 == \old(this._var50)
+s.B == \old(s.B)
+s.B.toString().equals(\old(s.B.toString()))
+s.C == \old(s.C)
+daikon.Quant.size(this._var50)-1 == \old(daikon.Quant.size(this._var50))
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this._var50), new String[] { "examples.S" })
+s.B != null
+s.B.toString().equals("")
+s.C != null
+daikon.Quant.size(this._var50) == 1

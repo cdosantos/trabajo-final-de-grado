@@ -1,0 +1,35 @@
+===========================================================================
+examples.MaxBag:::OBJECT
+this._var4384._0 == this._var5992
+this._var587 != null
+this._var721 != null
+this._var1457 != null
+this._var4384 != null
+this._var4384._1 != null
+this._var4384._1.getClass().getName() == java.lang.Integer[].class.getName()
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this._var4384._1), "java.lang.Integer")
+daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this._var4384._1), new String[] {  }) || daikon.Quant.pairwiseEqual(daikon.Quant.typeArray(this._var4384._1), new String[] { "java.lang.Integer" })
+this._var5992 != null
+this._var66253 != null
+daikon.Quant.eltsNotEqual(this._var66253, null)
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this._var66253), "java.lang.Integer")
+daikon.Quant.size(this._var4384._1) == 0 || daikon.Quant.size(this._var4384._1) == 1
+daikon.Quant.eltsEqual(this._var4384._1, this._var587)
+daikon.Quant.eltsLT(this._var4384._1, this._var5992)
+===========================================================================
+examples.MaxBag.remove(java.lang.Integer):::ENTER
+x != null
+daikon.Quant.eltsGT(this._var4384._1, x)
+===========================================================================
+examples.MaxBag.remove(java.lang.Integer):::EXIT
+this._var587 == \old(this._var587)
+this._var721 == \old(this._var721)
+this._var4384 == \old(this._var4384)
+this._var4384._1 == \old(this._var4384._1)
+this._var4384._1.getClass().getName() == \old(this._var4384._1.getClass().getName())
+daikon.Quant.pairwiseEqual(this._var4384._1, \old(this._var4384._1))
+this._var5992 == \old(this._var4384._0)
+this._var5992 == \old(this._var5992)
+this._var66253 == \old(this._var66253)
+daikon.Quant.pairwiseEqual(this._var66253, \old(this._var66253))
+daikon.Quant.eltsGT(this._var4384._1, \old(x))
