@@ -7,3 +7,6 @@ results-ground-truth-subjects/subjects/**/evosuite/bin/
 results-ground-truth-subjects/subjects/**/randoop/bin/
 results-ground-truth-subjects/subjects/**/states/
 results-ground-truth-subjects/subjects/**/bin/
+results-ground-truth-subjects/subjects/**/mutants/**/*.class
+results-ground-truth-subjects/subjects/**/mutants/**/*.dtrace.gz
+results-ground-truth-subjects/subjects/**/mutants/**/*.decls-DynComp
