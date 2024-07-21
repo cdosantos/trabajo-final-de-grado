@@ -2,8 +2,8 @@ mutant_id,mutation,failing_test,assertions_failures,non_assertions_failures
 1,STD,3,0,3
 2,STD,0,0,0
 3,STD,0,0,0
-4,STD,0,0,0
-5,STD,0,0,0
+4,STD,2,0,2
+5,STD,2,0,2
 6,LVR,0,0,0
 7,LVR,0,0,0
 8,AOR,0,0,0
@@ -13,8 +13,8 @@ mutant_id,mutation,failing_test,assertions_failures,non_assertions_failures
 12,AOR,0,0,0
 13,AOR,0,0,0
 14,AOR,0,0,0
-15,AOR,2,0,2
-16,STD,2,0,2
+15,AOR,0,0,0
+16,STD,0,0,0
 17,EVR,0,0,0
 18,STD,0,0,0
 19,STD,0,0,0
