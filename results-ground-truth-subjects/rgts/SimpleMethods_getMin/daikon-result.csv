@@ -1,8 +1,0 @@
-mutant_id,mutation,failing_test
-1,ROR,0
-2,ROR,2
-3,ROR,2
-4,EVR,4
-5,EVR,4
-6,LVR,
-7,EVR,4

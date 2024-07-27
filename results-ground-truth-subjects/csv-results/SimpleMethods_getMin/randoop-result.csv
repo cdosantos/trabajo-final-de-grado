@@ -1,8 +1,0 @@
-mutant_id,mutation,failing_test,assertions_failures,non_assertions_failures
-1,ROR,0,0,0
-2,ROR,393,393,0
-3,ROR,390,390,0
-4,EVR,401,401,0
-5,EVR,380,380,0
-6,LVR,0,0,0
-7,EVR,437,437,0
