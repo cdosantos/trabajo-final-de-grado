@@ -1,0 +1,18 @@
+===========================================================================
+examples.MinFinder:::OBJECT
+this._var88 != null
+daikon.Quant.eltsNotEqual(this._var88, null)
+daikon.Quant.eltsEqual(daikon.Quant.typeArray(this._var88), "examples.MinFinder.T")
+this._var811.val == -3
+daikon.Quant.size(this._var88)-1 != 0
+===========================================================================
+examples.MinFinder.findmin():::ENTER
+===========================================================================
+examples.MinFinder.findmin():::EXIT
+this._var88 == \old(this._var88)
+daikon.Quant.pairwiseEqual(this._var88, \old(this._var88))
+this._var811 == \result
+this._var811.val == \result.val
+\result == \old(this._var811)
+\result.val == \old(this._var811.val)
+\result.val == -3

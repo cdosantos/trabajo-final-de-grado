@@ -33,7 +33,7 @@ RingBuffer.item,15,101,85
 RingBuffer.remove,14,101,83
 RingBuffer.wipeOut,14,101,84
 SimpleMethods.abs,1,20,19
-SimpleMethods.addElementToSet,1 test),3,1
+SimpleMethods.addElementToSet,1,3,1
 SimpleMethods.getMin,3,7,5
 SimpleMethods.incrementNumberAtIndex,5,22,22
 StackAr.makeEmpty,1,47,47

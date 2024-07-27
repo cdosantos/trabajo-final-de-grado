@@ -2,7 +2,7 @@ mutant_id,mutation,failing_test
 1,ROR,0
 2,ROR,0
 3,ROR,0
-4,LVR,
+4,LVR,0
 5,LVR,0
 6,COR,0
 7,COR,0
@@ -10,5 +10,5 @@ mutant_id,mutation,failing_test
 9,LVR,0
 10,LVR,0
 11,LVR,0
-12,LVR,0
+12,LVR,
 13,EVR,0

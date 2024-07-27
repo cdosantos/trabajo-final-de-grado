@@ -24,9 +24,9 @@ Polyupdate.a1,462,54,47
 Polyupdate.sm,478,56,48
 QueueAr.dequeue,,69,42
 QueueAr.dequeueAll,459,67,42
-QueueAr.enqueue,,67,43
-QueueAr.getFront,,67,43
-QueueAr.makeEmpty,,67,43
+QueueAr.enqueue,400,67,43
+QueueAr.getFront,379,67,43
+QueueAr.makeEmpty,379,67,43
 RingBuffer.count,584,101,70
 RingBuffer.extend,517,101,70
 RingBuffer.item,526,101,70
@@ -36,7 +36,7 @@ SimpleMethods.abs,474,20,19
 SimpleMethods.addElementToSet,472,3,0
 SimpleMethods.getMin,543,7,5
 SimpleMethods.incrementNumberAtIndex,809,22,22
-StackAr.makeEmpty,1,47,47
+StackAr.makeEmpty,812,47,0
 StackAr.pop,400,48,42
 StackAr.push,446,48,42
 StackAr.top,406,48,43

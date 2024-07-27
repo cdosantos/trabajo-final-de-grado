@@ -37,7 +37,7 @@ do
       tests_files="$tests_files $package.$test"
     fi
   done
-  out=$(java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files)
+  out=$(timeout --foreground 1m java -cp $mutants_dir:${subject_jar}:${output_dir}randoop/bin:$junit:$hamcrest org.junit.runner.JUnitCore $tests_files)
   fail=$(echo "$out" | grep "Tests run: \|OK (")
   echo "> Fail: "$fail
   fail_detail=$(echo "$out" | grep "java.lang.AssertionError")

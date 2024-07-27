@@ -40,11 +40,11 @@ mutant_id,mutation,failing_test
 39,ROR,0
 40,ROR,0
 41,ROR,0
-42,COR,2
-43,COR,
+42,COR,0
+43,COR,0
 44,COR,0
 45,COR,0
 46,ORU,0
-47,ORU,0
-48,LVR,0
+47,ORU,2
+48,LVR,
 49,EVR,0

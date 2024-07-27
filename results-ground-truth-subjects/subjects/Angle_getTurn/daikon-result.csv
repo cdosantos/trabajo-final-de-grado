@@ -12,12 +12,12 @@ mutant_id,mutation,failing_test
 11,LVR,0
 12,LVR,0
 13,LVR,0
-14,ROR,
+14,ROR,0
 15,ROR,0
 16,ROR,0
 17,LVR,0
 18,LVR,0
 19,LVR,0
 20,LVR,0
-21,LVR,0
+21,LVR,
 22,EVR,0
