@@ -1,4 +1,0 @@
-methods,tests,mutants,detected_mutants
-MaxBag.add,690,748,145
-MaxBag.getMax,690,749,139
-MaxBag.remove,690,748,141
