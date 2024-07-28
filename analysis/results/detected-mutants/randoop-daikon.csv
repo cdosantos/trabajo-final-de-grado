@@ -1,0 +1,4 @@
+subject,mutants,detected_mutants
+maxbag_add,592,572
+maxbag_getMax,582,1
+maxbag_remove,582,562

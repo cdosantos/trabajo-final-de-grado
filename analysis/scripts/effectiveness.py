@@ -1,6 +1,5 @@
 # run example:
-# python3 analysis/effectiveness.py results/detected-mutants-daikon.csv results/detected-mutants-randoop.csv results/detected-mutants-randoop-daikon.csv results/detected-mutants-evosuite.csv results/detected-mutants-evosuite-daikon.csv 
-
+# python3 analysis/effectiveness.py results/detected-mutants/daikon.csv results/detected-mutants/randoop.csv results/detected-mutants/randoop-daikon.csv results/detected-mutants/evosuite.csv results/detected-mutants/evosuite-daikon.csv
 import sys
 import pandas as pd
 import numpy as np
@@ -43,7 +42,7 @@ print(f'detected by evosuite-daikon: {detected_by_evosuite_daikon} / {detected_b
 print()
 
 print('Plotting the results')
-output_file = "analysis/tools-effectiveness.pdf"
+output_file = "analysis/results/tools-effectiveness.pdf"
 print(f'Saving the plot to {output_file}')
 
 mutants_killed_percentage = [
@@ -63,6 +62,6 @@ plt.xlabel("Assertions")
 plt.ylabel("Percentage of mutants killed")
 plt.title("Effectiveness Detecting Mutants")
 # Save the plot
-plt.savefig("analysis/tools-effectiveness.pdf", format="pdf", bbox_inches="tight")
+plt.savefig("analysis/results/tools-effectiveness.pdf", format="pdf", bbox_inches="tight")
 
 print('Done!')

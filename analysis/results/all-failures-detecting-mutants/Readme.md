@@ -1,0 +1,1 @@
+# Son todos los mutantes detectados por aserciones, timeout, excepciones no capturadas en los test
