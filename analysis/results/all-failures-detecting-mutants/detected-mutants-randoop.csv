@@ -22,7 +22,7 @@ MaxBag.remove,690,748,167
 MinFinder.findMin,208,69,69
 Polyupdate.a1,462,54,47
 Polyupdate.sm,478,56,48
-QueueAr.dequeue,,69,42
+QueueAr.dequeue,454,69,42
 QueueAr.dequeueAll,459,67,42
 QueueAr.enqueue,400,67,43
 QueueAr.getFront,379,67,43

@@ -1,0 +1,45 @@
+method & randoop & evosuite & daikon & specfuzzer
+Angle.getTurn & 1331 (1331) & 3 (4) & 1 & 0 \\
+ArithmeticUtilsNew.subAndCheck & 3153 (326) & 8 (7) & 2 & 2 \\
+BooleanUtils.compare & 4014 (478) & 3 (3) & 1 & 12 \\
+BooleanUtils.toBoolean & 1109 (1109) & 6 (7) & 4 & 0 \\
+Composite.addChild & 2366 (177) & 3 (3) & 157 & 42 \\
+DoublyLinkedListNode.insertRight & 449 (539) & 4 (4) & 46 & 17 \\
+DoublyLinkedListNode.remove & 461 (555) & 4 (4) & 28 & 12 \\
+Envelope.maxExtent & 1930 (650) & 21 (8) & 10 & 27 \\
+FastMathNew.floor & 3253 (533) & 9 (9) & 1 & 31 \\
+IntMath.mod & 3292 (561) & 5 (5) & 3 & 46 \\
+ListComp02.insert\_r & 1924 (415) & 4 (5) & 18 & 3 \\
+ListComp02.insert\_s & 1780 (399) & 4 (5) & 24 & 2 \\
+Map.count & 2891 (496) & 16 (11) & 7 & 3 \\
+Map.extend & 2857 (491) & 17 (11) & 21 & 13 \\
+Map.remove & 2211 (399) & 16 (11) & 15 & 6 \\
+MathUtil.clamp & 1321 (1321) & 4 (5) & 0 & 13 \\
+MathUtilsNew.copySignInt & 3057 (349) & 7 (8) & 0 & 4 \\
+MaxBag.add & 2044 (457) & 20 (15) & 35 & \\
+MaxBag.getMax & 3373 (690) & 22 (16) & 0 & \\
+MaxBag.remove & 3373 (690) & 25 (16) & 29 & \\
+MinFinder.findMin & 3016 (208) & 9 (13) & 12 & 2 \\
+Polyupdate.a1 & 1165 (462) & 9 (8) & 4 & 89 \\
+Polyupdate.sm & 1230 (478) & 9 (9) & 3 & 30 \\
+QueueAr.dequeue & 2549 (454) & 13 (10) & 43 & 8 \\
+QueueAr.dequeueAll & 2605 (459) & 12 (10) & 23 & 19 \\
+QueueAr.enqueue & 2134 (400) & 12 (10) & 33 & 61 \\
+QueueAr.getFront & 1987 (379) & 15 (11) & 18 & 9 \\
+QueueAr.makeEmpty & 1987 (379) & 13 (10) & 28 & 55 \\
+RingBuffer.count & 3135 (584) & 19 (14) & 16 & 85 \\
+RingBuffer.extend & 2742 (517) & 18 (13) & 22 & 67 \\
+RingBuffer.item & 2779 (526) & 21 (15) & 15 & 31 \\
+RingBuffer.remove & 2843 (538) & 19 (14) & 17 & 55 \\
+RingBuffer.wipeOut & 3111 (581) & 19 (14) & 15 & 31 \\
+SimpleMethods.abs & 3159 (474) & 1 (1) & 2 & 20 \\
+SimpleMethods.addElementToSet & 2219 (472) & 2 (1) & 1 & 1 \\
+SimpleMethods.getMin & 3297 (543) & 3 (3) & 2 & 9 \\
+SimpleMethods.incrementNumberAtIndex & 2401 (809) & 2 (5) & 9 & 1 \\
+StackAr.makeEmpty & 5800 (812) & 11 (10) & 12 & 14 \\
+StackAr.pop & 2008 (400) & 11 (9) & 14 & 14 \\
+StackAr.push & 2376 (446) & 14 (11) & 16 & 13 \\
+StackAr.top & 2042 (406) & 10 (9) & 73 & 4 \\
+StackAr.topAndPop & 2679 (489) & 13 (11) & 39 & 25 \\
+Structure.foo & 976 (591) & 4 (4) & 2 & 2 \\
+Structure.setX & 892 (546) & 4 (4) & 1 & 19 \\
