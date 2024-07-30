@@ -10,6 +10,7 @@ randoop_results_file = sys.argv[2]
 randoop_daikon_results_file = sys.argv[3]
 evosuite_results_file = sys.argv[4]
 evosuite_daikon_results_file = sys.argv[5]
+output_file = sys.argv[6] or "analysis/results/tools-effectiveness.pdf"
 
 print("> Effectiveness analysis")
 print(f'daikon results file: {daikon_results_file}')
@@ -42,7 +43,6 @@ print(f'detected by evosuite-daikon: {detected_by_evosuite_daikon} / {detected_b
 print()
 
 print('Plotting the results')
-output_file = "analysis/results/tools-effectiveness.pdf"
 print(f'Saving the plot to {output_file}')
 
 mutants_killed_percentage = [
@@ -62,6 +62,6 @@ plt.xlabel("Assertions")
 plt.ylabel("Percentage of mutants killed")
 plt.title("Effectiveness Detecting Mutants")
 # Save the plot
-plt.savefig("analysis/results/tools-effectiveness.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(output_file, format="pdf", bbox_inches="tight")
 
 print('Done!')

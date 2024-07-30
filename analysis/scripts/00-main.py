@@ -21,7 +21,23 @@ subprocess.run(["python3", root+"/analysis/scripts/effectiveness.py",
 # 03 - Filtrado de los resultados obtenidos. Similar al paso 01.
 # Se descarta el subject maxbag 
 subprocess.run(["python3", root+"/analysis/scripts/get-assertion-failures-results.py", ".", "maxbag"])
+subprocess.run(["python3", root+"/analysis/scripts/effectiveness.py",
+  root+"/analysis/results/detected-mutants/daikon.csv",
+  root+"/analysis/results/detected-mutants/randoop.csv",
+  root+"/analysis/results/detected-mutants/randoop-daikon.csv",
+  root+"/analysis/results/detected-mutants/evosuite.csv",
+  root+"/analysis/results/detected-mutants/evosuite-daikon.csv",
+  "analysis/results/tools-effectiveness-without-maxbag.pdf"
+])
 
 # 04 - Filtrado de los resultados obtenidos. Similar al paso 03.
 # Se analiza solo el subject maxbag
 subprocess.run(["python3", root+"/analysis/scripts/get-assertion-failures-results.py", "maxbag"])
+subprocess.run(["python3", root+"/analysis/scripts/effectiveness.py",
+  root+"/analysis/results/detected-mutants/daikon.csv",
+  root+"/analysis/results/detected-mutants/randoop.csv",
+  root+"/analysis/results/detected-mutants/randoop-daikon.csv",
+  root+"/analysis/results/detected-mutants/evosuite.csv",
+  root+"/analysis/results/detected-mutants/evosuite-daikon.csv",
+  "analysis/results/tools-effectiveness-maxbag.pdf"
+])

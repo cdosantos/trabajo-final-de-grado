@@ -13,7 +13,7 @@ do
   if [[ $filename =~ .*ESTest_scaffolding\.java$ ]] ; then
     continue
   fi
-  counter=$(grep -E -c '\bassert' "$filename")
+  counter=$(grep -E -c '\b(assert|verifyException)' "$filename")
   assertions=$((counter + assertions))
 done
 archivo_csv="total-evosuite-assertions.csv"
