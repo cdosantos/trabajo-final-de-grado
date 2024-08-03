@@ -15,29 +15,36 @@ subprocess.run(["python3", root+"/analysis/scripts/effectiveness.py",
   root+"/analysis/results/detected-mutants/randoop.csv",
   root+"/analysis/results/detected-mutants/randoop-daikon.csv",
   root+"/analysis/results/detected-mutants/evosuite.csv",
-  root+"/analysis/results/detected-mutants/evosuite-daikon.csv"
+  root+"/analysis/results/detected-mutants/evosuite-daikon.csv",
+  "analysis/results/tools-effectiveness.pdf"
 ])
 
 # 03 - Filtrado de los resultados obtenidos. Similar al paso 01.
 # Se descarta el subject maxbag 
-subprocess.run(["python3", root+"/analysis/scripts/get-assertion-failures-results.py", ".", "maxbag"])
-subprocess.run(["python3", root+"/analysis/scripts/effectiveness.py",
-  root+"/analysis/results/detected-mutants/daikon.csv",
-  root+"/analysis/results/detected-mutants/randoop.csv",
-  root+"/analysis/results/detected-mutants/randoop-daikon.csv",
-  root+"/analysis/results/detected-mutants/evosuite.csv",
-  root+"/analysis/results/detected-mutants/evosuite-daikon.csv",
-  "analysis/results/tools-effectiveness-without-maxbag.pdf"
-])
+# subprocess.run(["python3", root+"/analysis/scripts/get-assertion-failures-results.py", ".", "maxbag"])
+# subprocess.run(["python3", root+"/analysis/scripts/effectiveness.py",
+#   root+"/analysis/results/detected-mutants/daikon.csv",
+#   root+"/analysis/results/detected-mutants/randoop.csv",
+#   root+"/analysis/results/detected-mutants/randoop-daikon.csv",
+#   root+"/analysis/results/detected-mutants/evosuite.csv",
+#   root+"/analysis/results/detected-mutants/evosuite-daikon.csv",
+#   "analysis/results/tools-effectiveness-without-maxbag.pdf"
+# ])
 
 # 04 - Filtrado de los resultados obtenidos. Similar al paso 03.
 # Se analiza solo el subject maxbag
-subprocess.run(["python3", root+"/analysis/scripts/get-assertion-failures-results.py", "maxbag"])
-subprocess.run(["python3", root+"/analysis/scripts/effectiveness.py",
-  root+"/analysis/results/detected-mutants/daikon.csv",
-  root+"/analysis/results/detected-mutants/randoop.csv",
-  root+"/analysis/results/detected-mutants/randoop-daikon.csv",
-  root+"/analysis/results/detected-mutants/evosuite.csv",
-  root+"/analysis/results/detected-mutants/evosuite-daikon.csv",
-  "analysis/results/tools-effectiveness-maxbag.pdf"
-])
+# subprocess.run(["python3", root+"/analysis/scripts/get-assertion-failures-results.py", "maxbag"])
+# subprocess.run(["python3", root+"/analysis/scripts/effectiveness.py",
+#   root+"/analysis/results/detected-mutants/daikon.csv",
+#   root+"/analysis/results/detected-mutants/randoop.csv",
+#   root+"/analysis/results/detected-mutants/randoop-daikon.csv",
+#   root+"/analysis/results/detected-mutants/evosuite.csv",
+#   root+"/analysis/results/detected-mutants/evosuite-daikon.csv",
+#   "analysis/results/tools-effectiveness-maxbag.pdf"
+# ])
+
+# 05 - Obtener resultados de mutantes detectados por tipo de mutación.
+# python3 effectiveness-by-mutation-type.py randoop
+subprocess.run(["python3", root+"/analysis/scripts/effectiveness-by-mutation-type.py", "daikon"])
+subprocess.run(["python3", root+"/analysis/scripts/effectiveness-by-mutation-type.py", "evosuite"])
+subprocess.run(["python3", root+"/analysis/scripts/effectiveness-by-mutation-type.py", "randoop"])

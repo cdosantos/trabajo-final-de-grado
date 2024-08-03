@@ -10,7 +10,7 @@ randoop_results_file = sys.argv[2]
 randoop_daikon_results_file = sys.argv[3]
 evosuite_results_file = sys.argv[4]
 evosuite_daikon_results_file = sys.argv[5]
-output_file = sys.argv[6] or "analysis/results/tools-effectiveness.pdf"
+output_file = sys.argv[6]
 
 print("> Effectiveness analysis")
 print(f'daikon results file: {daikon_results_file}')
