@@ -1,67 +1,61 @@
 # run example:
-# python3 analysis/effectiveness.py results/detected-mutants/daikon.csv results/detected-mutants/randoop.csv results/detected-mutants/randoop-daikon.csv results/detected-mutants/evosuite.csv results/detected-mutants/evosuite-daikon.csv
+# python3 analysis/effectiveness.py results/detected-mutants/daikon.csv:Daikon results/detected-mutants/randoop.csv:Randoop results/detected-mutants/evosuite.csv:Evosuite output.pdf
 import sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-daikon_results_file = sys.argv[1]
-randoop_results_file = sys.argv[2]
-randoop_daikon_results_file = sys.argv[3]
-evosuite_results_file = sys.argv[4]
-evosuite_daikon_results_file = sys.argv[5]
-output_file = sys.argv[6]
+def parse_input_files(args):
+    """Parse input arguments to extract file paths and labels."""
+    files_and_labels = []
+    for arg in args:
+        if ':' in arg:
+            file_path, label = arg.split(':', 1)
+        else:
+            file_path, label = arg, None
+        files_and_labels.append((file_path, label))
+    return files_and_labels
 
-print("> Effectiveness analysis")
-print(f'daikon results file: {daikon_results_file}')
-print(f'randoop results file: {randoop_results_file}')
-daikon_df = pd.read_csv(daikon_results_file)
-randoop_df = pd.read_csv(randoop_results_file)
-evosuite_df = pd.read_csv(evosuite_results_file)
-randoop_daikon_df = pd.read_csv(randoop_daikon_results_file)
-evosuite_daikon_df = pd.read_csv(evosuite_daikon_results_file)
-print()
+def calculate_percentage(file_path):
+    """Calculate the percentage of detected mutants for a given file."""
+    df = pd.read_csv(file_path)
+    total_mutants = df["mutants"].sum()
+    detected_mutants = df["detected_mutants"].sum()
+    return detected_mutants / total_mutants * 100 if total_mutants > 0 else 0
 
-total_mutants = randoop_df["mutants"].sum()
-detected_by_daikon = daikon_df["detected_mutants"].sum()
-detected_by_daikon_percentage = detected_by_daikon / total_mutants * 100
-detected_by_randoop = randoop_df["detected_mutants"].sum()
-detected_by_randoop_percentage = detected_by_randoop / total_mutants * 100
-detected_by_evosuite = evosuite_df["detected_mutants"].sum()
-detected_by_evosuite_percentage = detected_by_evosuite / total_mutants * 100
-detected_by_randoop_daikon = randoop_daikon_df["detected_mutants"].sum()
-detected_by_randoop_daikon_percentage = detected_by_randoop_daikon / total_mutants * 100
-detected_by_evosuite_daikon = evosuite_daikon_df["detected_mutants"].sum()
-detected_by_evosuite_daikon_percentage = detected_by_evosuite_daikon / total_mutants * 100
+def main():
+    # Parse command-line arguments
+    args = sys.argv[1:]
+    if len(args) < 2:
+        print("Usage: python3 effectiveness.py <file1[:label1]> <file2[:label2]> ... <output_file>")
+        sys.exit(1)
 
-print(f'total mutants: {total_mutants}')
-print(f'detected by daikon: {detected_by_daikon} / {detected_by_daikon_percentage}%')
-print(f'detected by randoop: {detected_by_randoop} / {detected_by_randoop_percentage}%')
-print(f'detected by evosuite: {detected_by_evosuite} / {detected_by_evosuite_percentage}%')
-print(f'detected by randoop-daikon: {detected_by_randoop_daikon} / {detected_by_randoop_daikon_percentage}%')
-print(f'detected by evosuite-daikon: {detected_by_evosuite_daikon} / {detected_by_evosuite_daikon_percentage}%')
-print()
+    # Extract output file
+    output_file = args[-1]
+    input_files = parse_input_files(args[:-1])
 
-print('Plotting the results')
-print(f'Saving the plot to {output_file}')
+    # Calculate percentages and prepare labels
+    percentages = []
+    labels = []
+    for file_path, label in input_files:
+        percentage = calculate_percentage(file_path)
+        percentages.append(percentage)
+        labels.append(label if label else file_path)
 
-mutants_killed_percentage = [
-  detected_by_randoop_percentage,
-  detected_by_daikon_percentage,
-  detected_by_evosuite_percentage,
-  detected_by_randoop_daikon_percentage,
-  detected_by_evosuite_daikon_percentage
-]
-bars = ('Randoop', 'Daikon', 'Evosuite', 'R&D', 'E&D')
-x_pos = np.arange(len(bars))
-# Create bars with different colors
-plt.bar(x_pos, mutants_killed_percentage, color=['darkgray', 'dimgray', 'orange', 'black', 'red'])
-# Create names on the x-axis
-plt.xticks(x_pos, bars)
-plt.xlabel("Assertions")
-plt.ylabel("Percentage of mutants killed")
-plt.title("Effectiveness Detecting Mutants")
-# Save the plot
-plt.savefig(output_file, format="pdf", bbox_inches="tight")
+    # Plot the results
+    print('Plotting the results')
+    print(f'Saving the plot to {output_file}')
 
-print('Done!')
+    x_pos = np.arange(len(labels))
+    plt.bar(x_pos, percentages, color=['darkgray', 'dimgray', 'orange', 'black', 'red'][:len(labels)])
+    plt.xticks(x_pos, labels, ha="right")
+    plt.xlabel("Aserciones")
+    plt.ylabel("Porcentaje de mutantes detectados")
+    plt.title("Eficacia en la detección de mutantes")
+    plt.tight_layout()
+    plt.savefig(output_file, format="pdf", bbox_inches="tight")
+
+    print('Done!')
+
+if __name__ == "__main__":
+    main()
