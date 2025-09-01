@@ -31,6 +31,47 @@ daikon_vs_randoop = 0
 daikon_vs_evosuite = 0
 total_mutants = 0
 
+mutants_to_ignore_file = dir+"/../../mutantes-no-relacionados-con-el-sut.csv"
+mutants_to_ignore_df = pd.read_csv(mutants_to_ignore_file)
+
+def parse_mutants_range(mutants_range):
+    """Parsea los rangos de mutantes y devuelve un conjunto con todos los valores."""
+    mutants_set = set()
+    
+    if pd.isna(mutants_range):
+        return mutants_set
+    
+    # Dividir por ';' para obtener múltiples rangos
+    ranges = mutants_range.split(';')
+    
+    for range_str in ranges:
+        range_str = range_str.strip()
+        if '-' in range_str:
+            # Es un rango (ej: "11-18")
+            start, end = map(int, range_str.split('-'))
+            mutants_set.update(range(start, end + 1))
+        else:
+            # Es un valor individual
+            mutants_set.add(int(range_str))
+    
+    return mutants_set
+
+def get_mutants_to_ignore_for_method(method_name):
+    """Obtiene los mutantes a ignorar para un método específico."""
+    method_row = mutants_to_ignore_df[mutants_to_ignore_df['method'] == method_name]
+
+    if method_row.empty:
+        return set()
+    
+    mutants_range = method_row.iloc[0]['mutants_range']
+    return parse_mutants_range(mutants_range)
+
+
+def include_mutant(index, mutants_list_to_ignore):
+    if mutants_list_to_ignore and (index+1) in mutants_list_to_ignore:
+        return False
+    return True
+
 for file in subject_folders:
     if not re.search(subject, file):
         continue
@@ -46,6 +87,8 @@ for file in subject_folders:
     evosuite_df = pd.read_csv(filedir+'/evosuite-result.csv')
     daikon_df = pd.read_csv(filedir+'/daikon-result.csv')
 
+    mutants_list_to_ignore = get_mutants_to_ignore_for_method(file)
+
     mutants = 0
     randoop_detected_mutants = 0
     evosuite_detected_mutants = 0
@@ -54,10 +97,14 @@ for file in subject_folders:
     evosuite_daikon_detected_mutants = 0
 
     for index, randoop in randoop_df.iterrows():
-        if randoop['non_assertions_failures'] > 0:
+        include = include_mutant(index, mutants_list_to_ignore)
+        # print(f"Index: {index}, Include: {include}")
+
+        if randoop['non_assertions_failures'] > 0 or not include:
             continue
             # print('In the subject', file, 'the mutant N', randoop['mutant_id'], 'has non-assertion failures')
-        if randoop['non_assertions_failures'] == 0:
+        
+        if randoop['non_assertions_failures'] == 0 and include:
             mutants += 1
             if randoop['assertions_failures'] > 0:
                 randoop_detected_mutants += 1

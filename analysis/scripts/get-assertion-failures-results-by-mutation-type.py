@@ -15,12 +15,12 @@ def build_chart(data, tool):
     print(data)
     fig, ax = plt.subplots()
 
-    ax.bar(data.index, data["detected_mutants"], label="Detected", color=['darkgray'])
-    ax.bar(data.index, data["not_failing"], bottom=data["detected_mutants"], label="Not Detected", color=['black'])
+    ax.bar(data.index, data["detected_mutants"], label="Detectado", color=['darkgray'])
+    ax.bar(data.index, data["not_failing"], bottom=data["detected_mutants"], label="No Detectado", color=['black'])
 
-    ax.set_xlabel("Mutation")
-    ax.set_ylabel("Mutants count")
-    ax.set_title(tool.upper()+": Detected and Not Detected Mutations")
+    ax.set_xlabel("Operador de Mutación")
+    ax.set_ylabel("Cantidad de Mutantes")
+    ax.set_title(tool.upper()+": Mutantes Detectados y No Detectados")
     ax.legend()
 
     plt.savefig(dir + "/../../analysis/results/detected-mutants-by-mutation-type/" + tool + "-effectiveness-by-mutant.pdf", format="pdf")
@@ -44,6 +44,48 @@ randoop_rows = []
 evosuite_rows = []
 daikon_rows = []
 
+mutants_to_ignore_file = dir+"/../../mutantes-no-relacionados-con-el-sut.csv"
+mutants_to_ignore_df = pd.read_csv(mutants_to_ignore_file)
+
+def parse_mutants_range(mutants_range):
+    """Parsea los rangos de mutantes y devuelve un conjunto con todos los valores."""
+    mutants_set = set()
+    
+    if pd.isna(mutants_range):
+        return mutants_set
+    
+    # Dividir por ';' para obtener múltiples rangos
+    ranges = mutants_range.split(';')
+    
+    for range_str in ranges:
+        range_str = range_str.strip()
+        if '-' in range_str:
+            # Es un rango (ej: "11-18")
+            start, end = map(int, range_str.split('-'))
+            mutants_set.update(range(start, end + 1))
+        else:
+            # Es un valor individual
+            mutants_set.add(int(range_str))
+    
+    return mutants_set
+
+def get_mutants_to_ignore_for_method(method_name):
+    """Obtiene los mutantes a ignorar para un método específico."""
+    method_row = mutants_to_ignore_df[mutants_to_ignore_df['method'] == method_name]
+
+    if method_row.empty:
+        return set()
+    
+    mutants_range = method_row.iloc[0]['mutants_range']
+    return parse_mutants_range(mutants_range)
+
+
+def include_mutant(index, mutants_list_to_ignore):
+    if mutants_list_to_ignore and (index+1) in mutants_list_to_ignore:
+        return False
+    return True
+
+
 for file in subject_folders:
     if not re.search(subject, file):
         continue
@@ -59,8 +101,15 @@ for file in subject_folders:
     evosuite_df = pd.read_csv(filedir+'/evosuite-result.csv')
     daikon_df = pd.read_csv(filedir+'/daikon-result.csv')
 
+    mutants_list_to_ignore = get_mutants_to_ignore_for_method(file)
+
     for index, randoop in randoop_df.iterrows():
-        if randoop['non_assertions_failures'] == 0:
+        include = include_mutant(index, mutants_list_to_ignore)
+        
+        if randoop['non_assertions_failures'] > 0 or not include:
+            continue
+
+        if randoop['non_assertions_failures'] == 0 and include:
             randoop_rows.append([
                 randoop.loc["mutation"],
                 randoop.loc["assertions_failures"]

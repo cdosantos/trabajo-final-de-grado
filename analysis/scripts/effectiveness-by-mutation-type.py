@@ -41,12 +41,12 @@ def build_chart(data, tool):
     print(data)
     fig, ax = plt.subplots()
 
-    ax.bar(data.index, data["detected_mutants"], label="Detected", color=['darkgray'])
-    ax.bar(data.index, data["not_failing"], bottom=data["detected_mutants"], label="Not Detected", color=['black'])
+    ax.bar(data.index, data["detected_mutants"], label="Detectado", color=['darkgray'])
+    ax.bar(data.index, data["not_failing"], bottom=data["detected_mutants"], label="No Detectado", color=['black'])
 
-    ax.set_xlabel("Mutation")
-    ax.set_ylabel("Mutants count")
-    ax.set_title(tool.upper()+": Detected and Not Detected Mutations")
+    ax.set_xlabel("Operador de Mutación")
+    ax.set_ylabel("Cantidad de Mutantes")
+    ax.set_title(tool.upper()+": Mutantes Detectados y No Detectados")
     ax.legend()
 
     plt.savefig(os.path.join(root, tool + "-effectiveness-by-mutant.pdf"), format="pdf")

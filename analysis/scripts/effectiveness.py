@@ -1,5 +1,5 @@
 # run example:
-# python3 analysis/effectiveness.py results/detected-mutants/daikon.csv:Daikon results/detected-mutants/randoop.csv:Randoop results/detected-mutants/evosuite.csv:Evosuite output.pdf
+# python3 scripts/effectiveness.py results/detected-mutants/randoop.csv:Randoop results/detected-mutants/evosuite.csv:Evosuite results/detected-mutants/daikon.csv:Daikon results/detected-mutants/specfuzzer.csv:SpecFuzzer output.pdf
 import sys
 import pandas as pd
 import numpy as np
@@ -47,7 +47,7 @@ def main():
     print(f'Saving the plot to {output_file}')
 
     x_pos = np.arange(len(labels))
-    plt.bar(x_pos, percentages, color=['darkgray', 'dimgray', 'orange', 'black', 'red'][:len(labels)])
+    plt.bar(x_pos, percentages, color=['darkgray', 'dimgray', 'orange', 'red'][:len(labels)])
     plt.xticks(x_pos, labels, ha="right")
     plt.xlabel("Aserciones")
     plt.ylabel("Porcentaje de mutantes detectados")

@@ -4,7 +4,7 @@ import sys
 def calculate_percentage(file_path, tool_name):
     """Calcula el porcentaje de mutantes detectados para un archivo dado."""
     data = pd.read_csv(file_path)
-    data[f'{tool_name}_percentage'] = (data['detected_mutants'] / data['mutants']) * 100
+    data[f'{tool_name}_percentage'] = round((data['detected_mutants'] / data['mutants']) * 100)
     return data[['subject', f'{tool_name}_percentage']].rename(columns={f'{tool_name}_percentage': tool_name})
 
 def main():
@@ -25,7 +25,7 @@ def main():
         if ':' in arg:
             file_path, label = arg.split(':', 1)
         else:
-            file_path, label = arg, file_path.split('/')[-1].split('.')[0]  # Usar el nombre del archivo como etiqueta
+            file_path, label = arg, arg.split('/')[-1].split('.')[0]  # Usar el nombre del archivo como etiqueta
 
         # Calcular el porcentaje y combinar los resultados
         data = calculate_percentage(file_path, label)
