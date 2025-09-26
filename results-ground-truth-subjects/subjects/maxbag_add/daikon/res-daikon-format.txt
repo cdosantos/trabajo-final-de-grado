@@ -1,0 +1,41 @@
+===========================================================================
+examples.MaxBag:::OBJECT
+this._var4384._0 == this._var5992
+this._var587 != null
+this._var721 != null
+this._var1457 != null
+this._var4384 != null
+this._var4384._1 != null
+this._var4384._1.getClass().getName() == java.lang.Integer[].class
+this._var4384._1[] sorted by >
+this._var5992 != null
+this._var66253 != null
+this._var66253[] elements != null
+this._var66253[].getClass().getName() elements == java.lang.Integer.class
+size(this._var4384._1[]) one of { 0, 1, 3 }
+===========================================================================
+examples.MaxBag.add(java.lang.Integer):::ENTER
+this._var4384._1[] elements has only one value
+this._var4384._1[].getClass().getName() elements == java.lang.Integer.class
+this._var4384._1[].getClass().getName() one of { [], [java.lang.Integer] }
+this._var66253[].getClass().getName() one of { [], [java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer] }
+size(this._var4384._1[]) one of { 0, 1 }
+size(this._var66253[]) one of { 0, 22 }
+this._var4384._1[] elements == this._var587
+===========================================================================
+examples.MaxBag.add(java.lang.Integer):::EXIT
+this._var587 == orig(x)
+this._var721 == orig(this._var721)
+this._var4384 == orig(this._var4384)
+this._var4384._1.getClass().getName() == orig(this._var4384._1.getClass().getName())
+this._var66253 == orig(this._var66253)
+size(this._var66253[])-1 == orig(size(this._var66253[]))
+this._var1457 has only one value
+this._var4384._1[].getClass().getName() one of { [java.lang.Integer], [java.lang.Integer, java.lang.Integer, null] }
+this._var66253[].getClass().getName() one of { [java.lang.Integer], [java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer] }
+size(this._var4384._1[]) one of { 1, 3 }
+size(this._var66253[]) one of { 1, 23 }
+this._var587 in this._var4384._1[]
+this._var4384._1[] > orig(this._var4384._1[]) (lexically)
+this._var4384._1[] >= orig(this._var4384._1[]) (lexically)
+size(this._var4384._1[])-1 >= orig(size(this._var4384._1[]))

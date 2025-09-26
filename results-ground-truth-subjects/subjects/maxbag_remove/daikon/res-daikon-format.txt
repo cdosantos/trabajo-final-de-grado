@@ -1,0 +1,35 @@
+===========================================================================
+examples.MaxBag:::OBJECT
+this._var4384._0 == this._var5992
+this._var587 != null
+this._var721 != null
+this._var1457 != null
+this._var4384 != null
+this._var4384._1 != null
+this._var4384._1.getClass().getName() == java.lang.Integer[].class
+this._var4384._1[].getClass().getName() elements == java.lang.Integer.class
+this._var4384._1[].getClass().getName() one of { [], [java.lang.Integer] }
+this._var5992 != null
+this._var66253 != null
+this._var66253[] elements != null
+this._var66253[].getClass().getName() elements == java.lang.Integer.class
+size(this._var4384._1[]) one of { 0, 1 }
+this._var4384._1[] elements == this._var587
+this._var4384._1[] elements < this._var5992
+===========================================================================
+examples.MaxBag.remove(java.lang.Integer):::ENTER
+x != null
+this._var4384._1[] elements > x
+===========================================================================
+examples.MaxBag.remove(java.lang.Integer):::EXIT
+this._var587 == orig(this._var587)
+this._var721 == orig(this._var721)
+this._var4384 == orig(this._var4384)
+this._var4384._1 == orig(this._var4384._1)
+this._var4384._1.getClass().getName() == orig(this._var4384._1.getClass().getName())
+this._var4384._1[] == orig(this._var4384._1[])
+this._var5992 == orig(this._var4384._0)
+this._var5992 == orig(this._var5992)
+this._var66253 == orig(this._var66253)
+this._var66253[] == orig(this._var66253[])
+this._var4384._1[] elements > orig(x)
