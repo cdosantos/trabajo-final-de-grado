@@ -1,0 +1,40 @@
+method;invariant
+composite_addChild;this == this.max_child.parent
+composite_addChild;this.children == this.max_child.parent.children
+composite_addChild;this.parent.value == this.value
+composite_addChild;this.parent.value == this.max_child.value
+composite_addChild;this.parent.init_value == this.init_value
+composite_addChild;this.parent.init_value == this.max_child.parent.init_value
+composite_addChild;this.parent.max_child == this.max_child
+composite_addChild;this.parent.max_child == this.max_child.parent.max_child
+composite_addChild;this.parent.max_child.children == this.max_child.children
+composite_addChild;this.parent.max_child.parent == this.max_child.parent
+composite_addChild;this.parent.max_child.ancestors == this.max_child.ancestors
+composite_addChild;this.init_value == this.max_child.parent.init_value
+composite_addChild;this.ancestors == this.max_child.parent.ancestors
+composite_addChild;this.max_child == this.max_child.parent.max_child
+composite_addChild;this.parent.children != null
+composite_addChild;this.children[] elements != null
+composite_addChild;this.parent.parent == null
+composite_addChild;this.this.parent.value one of { -3, 1 }
+composite_addChild;this.parent.init_value == -3
+composite_addChild;this.parent.max_child.children[] == []
+composite_addChild;this.parent.max_child.max_child == null
+composite_addChild;this.value != 0
+composite_addChild;this.init_value one of { -3, 32, 52 }
+composite_addChild;this.init_value != 0
+composite_addChild;this.max_child.children[] == []
+composite_addChild;this.max_child.parent.parent != null
+composite_addChild;this.max_child.parent.init_value == -3
+composite_addChild;this.max_child.parent.max_child != null
+composite_addChild;this.max_child.value == 1
+composite_addChild;this.max_child.max_child == null
+composite_addChild;size(this.children[]) one of { 0, 1, 2 }
+composite_addChild;size(this.parent.children[]) == 1
+composite_addChild;size(this.max_child.parent.children[]) == 1
+composite_addChild;this.init_value % this.parent.value == 0
+composite_addChild;this.init_value % this.value == 0
+maxbag_add,this._var4384._1[] sorted by >
+maxbag_add,size(this._var4384._1[]) one of { 0, 1, 3 }
+maxbag_remove,this._var4384._1[] elements == this._var587
+maxbag_remove,this._var4384._1[] elements < this._var5992
