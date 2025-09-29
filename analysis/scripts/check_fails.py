@@ -18,6 +18,7 @@ def check_fails_file(fails_path, false_positives):
         return None
         
     found_invariants = set()
+    affected_lines = 0
     for line in fails_content.split('\n'):
         if 'Invariant' in line:
             start = line.find("'") + 1
@@ -25,11 +26,10 @@ def check_fails_file(fails_path, false_positives):
             if start != -1 and end != -1:
                 invariant = line[start:end]
                 found_invariants.add(invariant)
-                if invariant not in false_positives:
-                    print(f"Archivo: {fails_path}")
-                    print(f"Mutante con invariant no conocido: {invariant}")
-                    return False
+                if invariant in false_positives:
+                    affected_lines += 1
 
+    print(f"Archivo {fails_path} tiene {affected_lines} de {len(found_invariants)} líneas afectadas por false positives.")
     return found_invariants.issubset(false_positives)
 
 def main():
